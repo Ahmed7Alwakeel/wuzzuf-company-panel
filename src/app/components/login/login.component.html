@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div class="row">
+  <div class="layOut d-flex align-content-center justify-content-center flex-column">
+    <div class="loginForm">
+      <h1 class="text-light text-center loginForm__h1 mb-4 fw-bolder">WUZZUF</h1>
+      <div class="card" style="width: 22rem;">
+        <div class="card-body">
+          <h2 class="card-title text-center">Welcome Back</h2>
+          <hr>
+          <div class="row">
+            <div class="col-12">
+              <form #form="ngForm" (ngSubmit)="logIn(form)">
+                <div [hidden]="error==''">
+                    <span class="text-danger">{{error}}</span>
+                </div>
+                <div class="mb-3 mt-1">
+                  <label for="exampleInputEmail1" class="form-label">Business Email</label>
+                  <input type="email" name="email" ngModel #email class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input class="form-control mt-2" id="exampleInputPassword1" placeholder="Password" name="password"
+                    type="password" ngModel required #password="ngModel">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Log In</button>
+              </form>
+              <hr>
+              <div class="mb-3">
+                <h3 class="text-center d-inline ms-5 ">NEW TO WUZZUF ?</h3>
+                <a class="text-decoration-none ms-1 fs-6" routerLink="/sign-up">Join us</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
