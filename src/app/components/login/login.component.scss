@@ -1,16 +1,10 @@
-.layOut{
+.layout{
     background-image: url('./../../../assets/signin-bg-2e90b9bf0eb96dcf489b0c00bfa7b35e.jpg');
     background-size: cover;
     height: 100vh;
-    .loginForm{
-        margin: auto;
-       .loginForm__form{
-        width: 400px;
-        height: 400px;
-        background-color: white;
-       }
-       .loginForm__h1{
+  
+       h1{
            font-size: 70px;
        }
-    }
+    
 }
