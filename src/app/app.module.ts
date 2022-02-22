@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -19,15 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyCJjC0k7nIJioNPfPOEOkERiXUrSKUBxFA",
-      authDomain: "ecommerce-89045.firebaseapp.com",
-      projectId: "ecommerce-89045",
-      storageBucket: "ecommerce-89045.appspot.com",
-      messagingSenderId: "294637497403",
-      appId: "1:294637497403:web:41ef88820e3562748e401e",
-      measurementId: "G-EPT82TS0X8"
-    }),
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserAnimationsModule,
     
   ],
