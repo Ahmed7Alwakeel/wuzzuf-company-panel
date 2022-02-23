@@ -1,21 +1,23 @@
+import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFirestoreModule} from '@angular/fire/firestore'
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+  
+    
   ],
   imports: [
     FormsModule,
@@ -23,8 +25,9 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
+    ReactiveFormsModule,
     BrowserAnimationsModule,
-    
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
