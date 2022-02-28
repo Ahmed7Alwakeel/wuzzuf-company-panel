@@ -9,13 +9,15 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
+import { HandlingJobsComponent } from './components/handling-jobs/handling-jobs.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    HandlingJobsComponent
   ],
   imports: [
     FormsModule,

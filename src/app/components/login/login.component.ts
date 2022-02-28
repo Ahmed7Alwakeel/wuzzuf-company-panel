@@ -26,6 +26,7 @@ isLogin=false;
       this.route.navigate(['/welcome'])
       this.isLogin=true;
     }).catch(error=>{
+     
       this.error=error.message
     })
   }
