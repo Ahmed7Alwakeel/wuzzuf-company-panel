@@ -1,18 +1,33 @@
 <!-- tobar  -->
 <div class="topbar">
-    <div class="toggle">
-       
+    <div class="toggle-menue" (click)="toggleSideBar()" matTooltip="toggle SideNav">
+        <mat-icon>menu</mat-icon>
     </div>
+
     <!-- serach  -->
     <div class="search">
-        <label for="">
+        <label>
             <input type="text" placeholder="search here">
-    
         </label>
     </div>
 
     <!-- user img  -->
-    <div class="user">
-        <img src="member-2.png" alt="">
+    <div class="user" [matMenuTriggerFor]="menu" matTooltip="profile">
+        <img src="assets/profile-pic.png" alt="useriImg">
     </div>
+    <mat-menu #menu="matMenu" class="profile-menue mt-1 me-3">
+        <div class="user-container">
+            <div class="user-profile d-flex justify-content-evenly align-items-center fw-bold" mat-menu-item
+                routerLink="/profile">
+                <img src="assets/profile-pic.png" alt="useriImg" class="rounded-circle user-img">
+                <h3 class="user-name p-2">Amr Mohsen <span class="d-block">See Your profile</span></h3>
+
+            </div>
+            <mat-divider class="mt-3 mb-3"></mat-divider>
+            <button mat-menu-item>
+                <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
+                Logout
+            </button>
+        </div>
+    </mat-menu>
 </div>

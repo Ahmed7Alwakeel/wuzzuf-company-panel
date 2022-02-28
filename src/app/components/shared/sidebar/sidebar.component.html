@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidebar-container" [hasBackdrop]="true">
+<mat-sidenav-container class="sidebar-container" [hasBackdrop]="true" >
     <mat-sidenav #sidenav [(opened)]="opened" mode="side">
         <ul>
             <li class="identity">
@@ -7,6 +7,8 @@
                     <span class="title">Wuzzuf Admin</span>
                 </a>
             </li>
+            <mat-divider class="mt-3 mb-3"></mat-divider>
+
             <li>
                 <a href="#">
                     <mat-icon>work</mat-icon>
@@ -14,9 +16,15 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a routerLink="/jobs">
                     <mat-icon>business_center</mat-icon>
                     <span class="title">Jobs</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <mat-icon>logout</mat-icon>
+                    <span class="title">logOut</span>
                 </a>
             </li>
         </ul>
@@ -24,10 +32,10 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <div class="toggle-menue" (click)="sidenav.toggle()">
+        <!-- <div class="toggle-menue" (click)="sidenav.toggle()">
             <mat-icon *ngIf="!opened">menu</mat-icon>
             <mat-icon *ngIf="opened">close</mat-icon>
-        </div>
-        <ng-content select=".container-fluid"></ng-content>
+        </div> -->
+        <ng-content select="ng-container"></ng-content>
     </mat-sidenav-content>
 </mat-sidenav-container>

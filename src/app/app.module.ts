@@ -26,8 +26,7 @@ import { TopNavComponent } from './components/top-nav/top-nav.component';
     NotFoundComponent,
     CardComponent,
     TopNavComponent,
-  
-    
+
   ],
   imports: [
     FormsModule,
@@ -37,7 +36,8 @@ import { TopNavComponent } from './components/top-nav/top-nav.component';
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

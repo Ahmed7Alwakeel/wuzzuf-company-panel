@@ -14,16 +14,19 @@ $white: white;
     left: 0;
     width: 100%;
     padding: 10px;
-
-    .identity::after {
-      content: "";
-      position: absolute;
-      bottom: 155px;
-      padding: 0;
-      height: 1px;
-      width:100% ;
-      background-color: rgb(255 255 255 / 90%);
+    mat-divider{
+      background-color: white;
     }
+    // .identity::after {
+    //   content: "";
+    //   position: absolute;
+    //   bottom: 155px;
+    //   left: 0;
+    //   padding: 0;
+    //   height: 1px;
+    //   width:100% ;
+    //   background-color: rgb(255 255 255 / 90%);
+    // }
 
     li {
       list-style: none;
@@ -82,24 +85,24 @@ $white: white;
     background-color: $mainBlueColor;
   }
 
-  .toggle-menue {
-    position: relative;
-    top: 0;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 4 !important;
-    cursor: pointer;
+  // .toggle-menue {
+  //   position: relative;
+  //   top: 0;
+  //   width: 60px;
+  //   height: 60px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   z-index: 4 !important;
+  //   cursor: pointer;
 
-    mat-icon {
-      font-size: 2.6rem;
-      transition: 0.1s;
+  //   mat-icon {
+  //     font-size: 2.6rem;
+  //     transition: 0.1s;
 
-      &.active {
-        display: block;
-      }
-    }
-  }
+  //     &.active {
+  //       display: block;
+  //     }
+  //   }
+  // }
 }

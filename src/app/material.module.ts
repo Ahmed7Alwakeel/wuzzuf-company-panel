@@ -8,8 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {MatCardModule} from '@angular/material/card';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -23,7 +25,10 @@ import {MatCardModule} from '@angular/material/card';
     MatSelectModule,
     MatSnackBarModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatDividerModule
   ],
   exports: [
     MatFormFieldModule,
@@ -35,7 +40,10 @@ import {MatCardModule} from '@angular/material/card';
     MatSelectModule,
     MatSnackBarModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }
