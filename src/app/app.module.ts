@@ -14,7 +14,7 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CardComponent } from './components/shared/card/card.component';
-import { TopNavComponent } from './components/top-nav/top-nav.component';
+import { TopNavComponent } from './components/shared/top-nav/top-nav.component';
 
 @NgModule({
   declarations: [
