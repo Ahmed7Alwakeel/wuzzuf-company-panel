@@ -1,0 +1,48 @@
+@import '../../../styles/variables.scss';
+
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: 0.2s;
+
+  @media (max-width: 991px) {
+    margin-top: 15px;
+  }
+  &:hover {
+    box-shadow: 0 7px 25px 16px rgb(0 0 0 / 8%);
+
+    transform: translate(-5px, -5px);
+  }
+
+  .dashboard-card {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: none;
+    mat-card-header {
+      display: block;
+    }
+  }
+
+  .title {
+    color: $gray;
+    font-size: 1.1em;
+    margin-top: 5px;
+  }
+
+  .number {
+    font-weight: 500;
+    font-size: 2.5em;
+    color: $mainBlueColor;
+    font-weight: 500;
+  }
+
+  .mat-icon {
+    font-size: 3.5em;
+    color: $gray;
+  }
+}

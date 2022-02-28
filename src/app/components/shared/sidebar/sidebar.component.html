@@ -1,0 +1,33 @@
+<mat-sidenav-container class="sidebar-container" [hasBackdrop]="true">
+    <mat-sidenav #sidenav [(opened)]="opened" mode="side">
+        <ul>
+            <li class="identity">
+                <a href="#">
+                    <img src="assets/logo.png" class="logo" alt="logo">
+                    <span class="title">Wuzzuf Admin</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <mat-icon>work</mat-icon>
+                    <span class="title">Manage Company</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <mat-icon>business_center</mat-icon>
+                    <span class="title">Jobs</span>
+                </a>
+            </li>
+        </ul>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="toggle-menue" (click)="sidenav.toggle()">
+            <mat-icon *ngIf="!opened">menu</mat-icon>
+            <mat-icon *ngIf="opened">close</mat-icon>
+        </div>
+        <ng-content select=".container-fluid"></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
