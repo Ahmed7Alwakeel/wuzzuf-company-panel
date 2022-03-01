@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   logIn(form: NgForm) {
     let data = form.value;
     this.authService.logIn(data.email, data.password).then(() => {
-      this.route.navigate(['/add-jobs'])
+      this.route.navigate([''])
       this.isLogin = true;
     }).catch((error: any) => {
       this.error = error.message

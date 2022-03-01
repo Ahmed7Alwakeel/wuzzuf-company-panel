@@ -99,7 +99,7 @@ export class SignUpComponent implements OnInit {
         this._snackBar.open('Signed up sucessfuly', 'x', {
           duration: 3000
         });
-        this.router.navigate(['/'])
+        this.router.navigate([''])
 
       }).catch((err: any) => {
         this._snackBar.open(err.message, 'x', {

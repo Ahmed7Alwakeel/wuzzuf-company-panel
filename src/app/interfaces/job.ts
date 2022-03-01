@@ -8,6 +8,7 @@ export interface Job {
     jobDescription:string,
     jobRequirements:string,
     date:Date,
-    id?:string
+    id?:string,
+    status:string
 
 }

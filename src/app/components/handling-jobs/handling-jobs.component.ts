@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -20,9 +21,15 @@ editingJob:Job={} as Job
     private activatedRoute: ActivatedRoute,
     private authService:AuthService,
     private snakBar: MatSnackBar,
-    private router:Router) { }
+    private router:Router,
+    private title:Title) { }
 
   ngOnInit(): void {
+    if(this.editMode){
+      this.title.setTitle("WUZZUF | Editing-Job")
+    }else{
+      this.title.setTitle("WUZZUF | Add-Jobs")
+    }
     this.authService.user.subscribe(user => {
       if (user) {
         console.log(user.uid)
@@ -58,7 +65,7 @@ editingJob:Job={} as Job
       jobCategories:formValue.jobCategories,
       jobDescription:formValue.jobDescription,
       jobRequirements:formValue.jobRequirements,
-      
+      status:"PENDING"
     }
     this.jobService.addJob(data).then(()=>{
       form.reset()
@@ -88,6 +95,7 @@ editingJob:Job={} as Job
       jobCategories:this.editingJob.jobCategories,
       jobDescription:this.editingJob.jobDescription,
       jobRequirements:this.editingJob.jobRequirements,
+      status:"PENDING"
     }
     if(this.jobID!=null)
 this.jobService.updatJob(this.jobID,newJob).then(()=>{
@@ -99,7 +107,7 @@ this.jobService.updatJob(this.jobID,newJob).then(()=>{
 
   });
   setTimeout(()=>{
-    this.router.navigate(['/welcome']);
+    this.router.navigate(['/jobs']);
   },1500)
 }
 )

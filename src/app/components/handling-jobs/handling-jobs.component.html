@@ -106,18 +106,12 @@
   </div>
 </div>
 
-
-<div *ngIf="editMode">
-    <h1>{{editingJob.jobTitle}}</h1>
-</div>
-
-
 <div class="row" *ngIf="editMode">
     <div class="col-5 mt-2">
       <form #form="ngForm" (ngSubmit)="update(form)">
         <div class="mb-3">
           <label for="jobTitle" class="form-label fw-bolder">Job Title</label>
-          <input type="text" pattern="[A-Za-z_]{10,}" class="form-control w-75"  id="jobTitle" [(ngModel)]="editingJob.jobTitle" #jobTitle="ngModel"
+          <input type="text" pattern="[A-Za-z_ ]{10,}" class="form-control w-75"  id="jobTitle" [(ngModel)]="editingJob.jobTitle" #jobTitle="ngModel"
             name="jobTitle" required>
           <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobTitle.valid || jobTitle.untouched">
             <span *ngIf="jobTitle.errors?.['required']"> Job Title is required</span>
@@ -200,19 +194,19 @@
         <div class="mb-3">
           <label for="jobDescription" class="form-label fw-bolder">Job Description </label>
           <textarea class="form-control w-75" id="jobDescription" #jobDescription="ngModel" [(ngModel)]="editingJob.jobDescription" name="jobDescription"
-            required pattern="[A-Za-z]{50,}"></textarea>
+            required ></textarea>
             <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobDescription.valid || jobDescription.untouched">
               <span *ngIf="jobDescription.errors?.['required']"> Job Description is required</span>
-              <span *ngIf="jobDescription.errors?.['pattern']"> Job Description must be more than 50 letters</span>
+              <!-- <span *ngIf="jobDescription.errors?.['pattern']"> Job Description must be more than 50 letters</span> -->
             </div>
         </div>
         <div class="mb-3">
           <label for="jobDescription" class="form-label fw-bolder">Job Requirements </label>
           <textarea class="form-control w-75" id="jobDescription" #jobRequirements="ngModel" [(ngModel)]="editingJob.jobRequirements" name="jobRequirements"
-            required pattern="[A-Za-z]{50,}"></textarea>
+            required ></textarea>
             <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobRequirements.valid || jobRequirements.untouched">
               <span *ngIf="jobRequirements.errors?.['required']"> Job Requirements is required</span>
-              <span *ngIf="jobRequirements.errors?.['pattern']"> Job Requirements must be more than 50 letters</span>
+              <!-- <span *ngIf="jobRequirements.errors?.['pattern']"> Job Requirements must be more than 50 letters</span> -->
             </div>
         </div>
         <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Edit</button>

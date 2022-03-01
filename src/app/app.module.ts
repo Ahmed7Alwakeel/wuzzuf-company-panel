@@ -11,7 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HandlingJobsComponent } from './components/handling-jobs/handling-jobs.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import { JobsComponent } from './components/jobs/jobs.component';
+import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CardComponent } from './components/shared/card/card.component';
+import { TopNavComponent } from './components/shared/top-nav/top-nav.component';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
+import { JobDetailsComponent } from './components/handling-jobs/job-details/job-details.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +26,15 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     LoginComponent,
     SignUpComponent,
     HandlingJobsComponent,
-    WelcomeComponent
-  
-    
+    JobsComponent,
+    SidebarComponent,
+    DashboardComponent,
+    NotFoundComponent,
+    CardComponent,
+    TopNavComponent,
+    MainLayoutComponent,
+    JobDetailsComponent,
+
   ],
   imports: [
     FormsModule,
@@ -31,7 +44,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

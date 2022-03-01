@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JobService } from 'src/app/services/jobs/job.service';
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.scss']
+  selector: 'app-jobs',
+  templateUrl: './jobs.component.html',
+  styleUrls: ['./jobs.component.scss']
 })
-export class WelcomeComponent implements OnInit {
+export class JobsComponent implements OnInit {
 
   isUser = false;
   isLoading = false;
@@ -18,11 +19,13 @@ export class WelcomeComponent implements OnInit {
   editMode=false;
   constructor(private jobService: JobService,
     private authService: AuthService,
-    private snakBar: MatSnackBar,
-    private router: Router,
+    // private snakBar: MatSnackBar,
+    // private router: Router,
+    private title:Title
   ) { }
 
   ngOnInit(): void {
+    this.title.setTitle("WUZZUF | Jobs")
     this.isLoading = true
     this.authService.user.subscribe(user => {
       if (user) {

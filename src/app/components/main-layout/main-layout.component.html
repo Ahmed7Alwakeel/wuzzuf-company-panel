@@ -1,0 +1,8 @@
+<app-sidebar #side>
+      <ng-container>
+            <top-nav (toggleSide)="side.toggleNav()"></top-nav>
+            <div class="container-fluid">
+                  <router-outlet></router-outlet>
+            </div>
+      </ng-container>
+</app-sidebar>
