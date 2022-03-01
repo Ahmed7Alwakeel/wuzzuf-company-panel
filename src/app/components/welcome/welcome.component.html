@@ -1,1 +1,6 @@
-<p>welcome works!</p>
+<div *ngFor="let job of jobs">
+    <h1>{{job.jobTitle}}</h1>
+    <button class="btn btn-danger" (click)="deleteJob(job)">Delete</button>
+    <button class="btn btn-danger ms-1" [routerLink]="['/edit-jobs',job.id]">Edite</button> 
+</div>
+<h1 *ngIf="jobs.length==0">There's No Jobs</h1>

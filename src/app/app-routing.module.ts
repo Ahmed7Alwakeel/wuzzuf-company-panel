@@ -4,13 +4,15 @@ import { HandlingJobsComponent } from './components/handling-jobs/handling-jobs.
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { LoginGuard } from './guards/login.guard';
+import { LoginGuard } from './guards/login/login.guard';
+
 
 const routes: Routes = [
-  {path:"login", component:LoginComponent},
-  {path:"sign-up", component:SignUpComponent,canActivate:[LoginGuard]},
-  {path:"welcome", component:WelcomeComponent},
-  {path:"handling-jobs", component:HandlingJobsComponent},
+  {path:"login", component:LoginComponent}, // ,canActivate:[LoginGuard]
+  {path:"add-jobs", component:HandlingJobsComponent},
+  {path:"edit-jobs/:id", component:HandlingJobsComponent},
+  {path:"sign-up", component:SignUpComponent},// ,canActivate:[LoginGuard]
+  {path:"welcome", component:WelcomeComponent}
 ];
 
 @NgModule({

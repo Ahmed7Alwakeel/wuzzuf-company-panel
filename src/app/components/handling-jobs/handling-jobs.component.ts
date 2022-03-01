@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Job } from 'src/app/interfaces/job';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { JobService } from 'src/app/services/jobs/job.service';
 
 @Component({
   selector: 'app-handling-jobs',
@@ -6,10 +12,100 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./handling-jobs.component.scss']
 })
 export class HandlingJobsComponent implements OnInit {
-
-  constructor() { }
+  editMode=false;
+isUser=false;
+jobID!:string | null
+editingJob:Job={} as Job
+  constructor(private jobService:JobService,
+    private activatedRoute: ActivatedRoute,
+    private authService:AuthService,
+    private snakBar: MatSnackBar,
+    private router:Router) { }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      if (user) {
+        console.log(user.uid)
+        this.isUser = true;
+        this.authService.userID = user.uid
+        this.activatedRoute.paramMap.subscribe((paramMap) => {
+          this.jobID = paramMap.get('id');
+           this.editMode = paramMap.get('id') != null;
+     
+          if(this.jobID!=null)
+          this.jobService.getJobByID(this.jobID).subscribe((job:any)=>{
+            
+            this.editingJob=job
+            
+          })
+        });
+      }
+      else {
+        this.isUser = false
+        this.authService.userID = ""
+      }
+    })
   }
+  addJob(form:NgForm){
+    let formValue=form.value
+    let data:Job={
+      date:new Date(),
+      jobTitle:formValue.jobTitle,
+      jobType:formValue.jobType,
+      careerLevel:formValue.careerLevel,
+      experience:`${formValue.from} To ${formValue.to} years`,
+      salary:formValue.salary,
+      jobCategories:formValue.jobCategories,
+      jobDescription:formValue.jobDescription,
+      jobRequirements:formValue.jobRequirements,
+      
+    }
+    this.jobService.addJob(data).then(()=>{
+      form.reset()
+      this.snakBar.open("Added Job successfuly", 'Delete', {
+        duration: 2000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center',
+
+      });
+      setTimeout(()=>{
+        this.router.navigate(['/welcome']);
+      },1500)
+    }
+    )
+
+  }
+
+  update(form:NgForm){
+    
+    let newJob={
+      date:new Date(),
+      jobTitle:this.editingJob.jobTitle,
+      jobType:this.editingJob.jobType,
+      careerLevel:this.editingJob.careerLevel,
+      experience:`${form.value.from} To ${form.value.to} years`,
+      salary:this.editingJob.salary,
+      jobCategories:this.editingJob.jobCategories,
+      jobDescription:this.editingJob.jobDescription,
+      jobRequirements:this.editingJob.jobRequirements,
+    }
+    if(this.jobID!=null)
+this.jobService.updatJob(this.jobID,newJob).then(()=>{
+  form.reset()
+  this.snakBar.open("Editing Job successfuly", 'Delete', {
+    duration: 2000,
+    verticalPosition: 'top',
+    horizontalPosition: 'center',
+
+  });
+  setTimeout(()=>{
+    this.router.navigate(['/welcome']);
+  },1500)
+}
+)
+
+  }
+
+
 
 }

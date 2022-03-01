@@ -7,18 +7,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  user!:Observable<firebase.User| null>
-  constructor(private fireAuth:AngularFireAuth) {
-    this.user=fireAuth.user
+  user!: Observable<firebase.User | null>
+  userID:string=""
+  constructor(private fireAuth: AngularFireAuth) {
+    this.user = fireAuth.user
   }
 
-signUp(email: string, password: string) {
+  signUp(email: string, password: string) {
     return this.fireAuth.createUserWithEmailAndPassword(email, password)
   }
-  logIn(email: string, password: string){
-    return this.fireAuth.signInWithEmailAndPassword(email,password);
+  
+  logIn(email: string, password: string) {
+    return this.fireAuth.signInWithEmailAndPassword(email, password);
   }
-  logOut(){
+  logOut() {
     return this.fireAuth.signOut()
   }
 }
