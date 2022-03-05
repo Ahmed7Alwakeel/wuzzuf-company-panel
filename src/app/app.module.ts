@@ -1,3 +1,4 @@
+
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,6 +20,10 @@ import { CardComponent } from './components/shared/card/card.component';
 import { TopNavComponent } from './components/shared/top-nav/top-nav.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { JobDetailsComponent } from './components/handling-jobs/job-details/job-details.component';
+import { DetailsCardComponent } from './components/shared/details-card/details-card.component';
+import { JobApplicantsComponent } from './components/application/job-applicants/job-applicants.component';
+import { ApplicationDetailsComponent } from './components/application/application-details/application-details.component';
+import { QuillModule } from 'ngx-quill'
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { JobDetailsComponent } from './components/handling-jobs/job-details/job-
     TopNavComponent,
     MainLayoutComponent,
     JobDetailsComponent,
-
+    DetailsCardComponent,
+    JobApplicantsComponent,
+    ApplicationDetailsComponent,
   ],
   imports: [
     FormsModule,
@@ -45,7 +52,7 @@ import { JobDetailsComponent } from './components/handling-jobs/job-details/job-
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

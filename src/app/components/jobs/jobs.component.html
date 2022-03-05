@@ -1,32 +1,35 @@
+<h1 class="text-primary fw-bold p-3">Jobs</h1>
 
 <h1 *ngIf="jobs.length==0">There's No Jobs</h1>
+<table class="table mt-2">
+  <thead>
+    <tr>
+      <th scope="col">#Number</th>
+      <th scope="col">Job Title</th>
+      <th scope="col">Job Type</th>
+      <th scope="col">Job Category</th>
+      <th scope="col">Status</th>
+      <th scope="col">control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let job of jobs,let i=index" [routerLink]="['/job-detail',job.id]" style="cursor: pointer;"
+      class="fw-bolder"  matTooltip="View Details"  matTooltipPosition="below">
+      <th scope="row">{{i+1}}</th>
+      <td>{{job.jobTitle}}</td>
+      <td>{{job.jobType}}</td>
+      <td>{{job.jobCategories}}</td>
+      <ng-container [ngSwitch]="job.status">
+        <td *ngSwitchCase="'PENDING'"><span class="badge rounded-pill bg-secondary mt-2">{{job.status}}</span></td>
+        <td *ngSwitchCase="'ACCEPTED'"><span class="badge rounded-pill bg-success mt-2">{{job.status}}</span></td>
+        <td *ngSwitchCase="'REFUSED'"><span class="badge rounded-pill bg-danger mt-2">{{job.status}}</span></td>
+      </ng-container>
 
+      <td>
+        <button mat-raised-button color="primary" class="me-2" [routerLink]="['/edit-jobs',job.id]">Edit</button>
+        <button  mat-raised-button color="warn"(click)="deleteJob(job)">Delete</button>
+      </td>
 
-<table class="table mt-2" >
-    <thead >
-      <tr >
-        <th scope="col">#</th>
-        <th scope="col">Job Title</th>
-        <th scope="col">Job Type</th>
-        <th scope="col">Job Category</th>
-        <th scope="col">Status</th>
-        <th scope="col">Delete</th>
-        <th scope="col">Edit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let job of jobs,let i=index" [routerLink]="['/job-detail',job.id]" style="cursor: pointer;" class="fw-bolder">
-        <th scope="row" >{{i}}</th>
-        <td >{{job.jobTitle}}</td>
-        <td>{{job.jobType}}</td>
-        <td>{{job.jobCategories}}</td>
-        <ng-container [ngSwitch]="job.status">
-           <td *ngSwitchCase="'PENDING'" ><span class="badge rounded-pill bg-secondary mt-2">{{job.status}}</span></td>
-           <td *ngSwitchCase="'ACCEPTED'" ><span class="badge rounded-pill bg-success mt-2">{{job.status}}</span></td>
-           <td *ngSwitchCase="'REFUSED'" ><span class="badge rounded-pill bg-danger mt-2">{{job.status}}</span></td>
-          </ng-container>
-        <td><button class="btn btn-danger" (click)="deleteJob(job)">Delete</button></td>
-        <td><button class="btn btn-danger ms-1" [routerLink]="['/edit-jobs',job.id]">Edit</button> </td>
-      </tr>
-    </tbody>
-  </table><button class="btn btn-primary" routerLink="/add-jobs">Add New Job</button>
+    </tr>
+  </tbody>
+</table><button class="btn btn-primary" routerLink="/add-jobs">Add New Job</button>

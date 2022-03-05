@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   constructor(private fireAuth: AngularFireAuth){
 

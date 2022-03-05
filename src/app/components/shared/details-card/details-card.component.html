@@ -1,0 +1,11 @@
+<mat-card class="p-4" matTooltip={{tooltip}} [matTooltipPosition]="tooltipPosition">
+    <mat-card-title class="fw-bold py-3" *ngIf="title">
+        {{title}}
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="subtitle">
+        <span class="badge bg-light text-dark"> {{subtitle}}</span>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <ng-content></ng-content>
+    </mat-card-content>
+</mat-card>

@@ -2,13 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';;
 import { CompanySize } from 'src/app/interfaces/company-size';
 import { Industry } from 'src/app/interfaces/industry';
-import { IndustryService } from 'src/app/services/industry.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Company } from 'src/app/interfaces/company';
 import { CompanyEmployee } from 'src/app/interfaces/company-employee';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { IndustryService } from 'src/app/services/industry/industry.service';
 
 @Component({
   selector: 'app-sign-up',

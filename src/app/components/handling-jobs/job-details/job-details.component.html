@@ -1,2 +1,67 @@
-<p>{{selectedJob.jobTitle}}</p>
-<button class="btn btn-primary" routerLink="/jobs">Back To Job List</button>
+<div class="job-content-wraper w-75 m-auto">
+    <button mat-raised-button color="primary" class="mt-3 mb-3" routerLink="/jobs">
+        <mat-icon>arrow_back</mat-icon> Back To Job List
+    </button>
+
+    <section class="job-header">
+        <details-card title={{selectedJob.jobTitle}} subtitle="subtitle">
+            <div class="applicants d-flex align-items-center">
+                <span class="applicants-number fw-bold me-2">73</span>
+                <span class="position">Applicants for open position</span>
+                <button mat-raised-button class="ms-5 btn-success" [routerLink]="['/applications',jobID]">
+                    <mat-icon>view_list</mat-icon> View Applicants
+                </button>
+            </div>
+        </details-card>
+    </section>
+
+    <section class="details mt-4">
+        <details-card>
+            <h2 class="py-3">
+                Job details
+            </h2>
+            <section class="job-details">
+                <div class="row mb-2 detail">
+                    <div class="col-2">Experience Needed:</div>
+                    <div class="col-8">{{selectedJob.experience}}</div>
+                </div>
+                <div class="row mb-2 detail">
+                    <div class="col-2">Career Level:</div>
+                    <div class="col-8">{{selectedJob.careerLevel}}</div>
+                </div>
+                <div class="row mb-2 detail">
+                    <div class="col-2">Education Level:</div>
+                    <div class="col-8">Bachelor's Degree</div>
+                </div>
+                <div class="row mb-2 detail">
+                    <div class="col-2">Salary:</div>
+                    <div class="col-8">{{selectedJob.salary}}
+                    </div>
+                </div>
+                <div class="row mb-2 detail">
+                    <div class="col-2">Job Categories:</div>
+                    <div class="col-8">Engineering - Telecom/Technology</div>
+                </div>
+            </section>
+        </details-card>
+    </section>
+
+    <section class="Job-description mt-4">
+        <details-card>
+            <h2 class="py-3">
+                Job Description
+            </h2>
+            <section class="lists px-4" [innerHTML]="selectedJob.jobDescription"></section>
+        </details-card>
+
+    </section>
+
+    <section class="Job-description mt-4">
+        <details-card>
+            <h2 class="py-3">
+                Job Requirements
+            </h2>
+            <section class="lists px-4"[innerHTML]="selectedJob.jobRequirements"></section>
+        </details-card>
+    </section>
+</div>
