@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Job } from 'src/app/interfaces/job';
@@ -7,12 +8,13 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class JobService {
-
+jobs:Job[]=[]
   constructor(private fireStore: AngularFirestore,
     private authService: AuthService) { }
   addJob(job:Job) {
     return this.fireStore.collection(`company/${this.authService.userID}/jobs`).add(job)
   }
+  
   getJobs(){
     return this.fireStore.collection(`company/${this.authService.userID}/jobs`).snapshotChanges()
   }
@@ -26,4 +28,5 @@ export class JobService {
   updatJob(jobID: string, job:Job) {
     return this.fireStore.doc(`company/${this.authService.userID}/jobs/${jobID}`).update(job)
   }
+  
 }

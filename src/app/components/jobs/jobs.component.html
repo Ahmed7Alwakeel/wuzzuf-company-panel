@@ -1,32 +1,39 @@
-
-<h1 *ngIf="jobs.length==0">There's No Jobs</h1>
-
-
-<table class="table mt-2" >
-    <thead >
-      <tr >
-        <th scope="col">#</th>
+<h1 *ngIf="jobService.jobs.length==0">There's No Jobs</h1>
+<section>
+  <table class="table mt-2 shadow" *ngIf="!isLoading">
+    <thead>
+      <tr>
+        <th scope="col" class="ms-1" >#</th>
         <th scope="col">Job Title</th>
         <th scope="col">Job Type</th>
         <th scope="col">Job Category</th>
         <th scope="col">Status</th>
         <th scope="col">Delete</th>
         <th scope="col">Edit</th>
+        <th scope="col">Details</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let job of jobs,let i=index" [routerLink]="['/job-detail',job.id]" style="cursor: pointer;" class="fw-bolder">
-        <th scope="row" >{{i}}</th>
-        <td >{{job.jobTitle}}</td>
+    <tr  *ngFor="let job of jobService.jobs,let i=index" style="cursor: pointer;" class="fw-bolder">
+        <th scope="row">{{i}}</th>
+        <td>{{job.jobTitle}}</td>
         <td>{{job.jobType}}</td>
         <td>{{job.jobCategories}}</td>
         <ng-container [ngSwitch]="job.status">
-           <td *ngSwitchCase="'PENDING'" ><span class="badge rounded-pill bg-secondary mt-2">{{job.status}}</span></td>
-           <td *ngSwitchCase="'ACCEPTED'" ><span class="badge rounded-pill bg-success mt-2">{{job.status}}</span></td>
-           <td *ngSwitchCase="'REFUSED'" ><span class="badge rounded-pill bg-danger mt-2">{{job.status}}</span></td>
-          </ng-container>
+          <td *ngSwitchCase="'PENDING'"><span class="badge rounded-pill bg-secondary mt-2">{{job.status}}</span></td>
+          <td *ngSwitchCase="'ACCEPTED'"><span class="badge rounded-pill bg-success mt-2">{{job.status}}</span></td>
+          <td *ngSwitchCase="'REFUSED'"><span class="badge rounded-pill bg-danger mt-2">{{job.status}}</span></td>
+        </ng-container>
         <td><button class="btn btn-danger" (click)="deleteJob(job)">Delete</button></td>
         <td><button class="btn btn-danger ms-1" [routerLink]="['/edit-jobs',job.id]">Edit</button> </td>
+        <td><button class="btn btn-danger ms-1" [routerLink]="['/job-detail',job.id]">Details</button> </td>
+      <!-- </ng-template> -->
       </tr>
+
     </tbody>
-  </table><button class="btn btn-primary" routerLink="/add-jobs">Add New Job</button>
+  </table>
+  <!-- <div class="spinner-border spinner" *ngIf="isLoading" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div> -->
+  <button class="btn btn-primary" routerLink="/add-jobs">Add New Job</button>
+</section>

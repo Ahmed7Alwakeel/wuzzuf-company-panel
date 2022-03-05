@@ -1,215 +1,272 @@
 <div class="row" *ngIf="!editMode">
-  <div class="col-5 mt-2">
-    <form #form="ngForm" (ngSubmit)="addJob(form)">
-      <div class="mb-3">
-        <label for="jobTitle" class="form-label fw-bolder">Job Title</label>
-        <input type="text" pattern="[A-Za-z_ ]{10,}" class="form-control w-75"  id="jobTitle" ngModel #jobTitle="ngModel"
-          name="jobTitle" required>
-        <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobTitle.valid || jobTitle.untouched">
-          <span *ngIf="jobTitle.errors?.['required']"> Job Title is required</span>
-          <span *ngIf="jobTitle.errors?.['pattern']"> Job Title must be more than 10 letters</span>
-        </div>
-      </div>
+  <div class="card m-auto shadow border-0">
+    <div class="card-body ms-5">
+      <div class="col-5 mt-2">
+        <form #form="ngForm" (ngSubmit)="addJob(form)">
+          <div class="mb-3">
+            <label for="jobTitle" class="form-label fw-bolder">Job Title</label>
+            <input type="text" pattern="[A-Za-z_ ]{10,}" class="form-control w-75" id="jobTitle" ngModel
+              #jobTitle="ngModel" name="jobTitle" required>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75"
+              [hidden]="jobTitle.valid || jobTitle.untouched">
+              <span *ngIf="jobTitle.errors?.['required']"> Job Title is required</span>
+              <span *ngIf="jobTitle.errors?.['pattern']"> Job Title must be more than 10 letters</span>
+            </div>
+          </div>
 
-      <div class="mb-3">
-        <label for="disabledSelect" class="form-label fw-bolder">Job Type</label>
-        <select id="disabledSelect" class="form-select w-75" #jobType="ngModel" ngModel name="jobType" required>
-          <option>Full Time</option>
-          <option>Part Time</option>
-        </select>
-        <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobType.valid || jobType.untouched">
-          <span *ngIf="jobType.errors?.['required']"> Job Type is required</span>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="disabledSelect" class="form-label fw-bolder">Career Level</label>
-        <select id="disabledSelect" class="form-select w-75" #careerLevel="ngModel" ngModel name="careerLevel" required>
-          <option>Student</option>
-          <option>Entery Level</option>
-          <option>Experienced</option>
-        </select>
-        <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert" [hidden]="careerLevel.valid || careerLevel.untouched">
-          <span *ngIf="careerLevel.errors?.['required']"> Career Level is required</span>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="disabledSelect" class="form-label d-block fw-bolder">Experience</label>
-        <div class="row">
-          <div class="col-3">
-            <span class="me-2 fw-bolder">From</span>
-            <select id="disabledSelect" class="form-select w-50 d-inline" #from="ngModel" ngModel name="from" required>
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Job Type</label>
+            <select id="disabledSelect" class="form-select w-75" #jobType="ngModel" ngModel name="jobType" required>
+              <option>Full Time</option>
+              <option>Part Time</option>
             </select>
-            <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert" [hidden]="from.valid || from.untouched">
-                <span *ngIf="from.errors?.['required']">Experience is required</span>
-              </div>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobType.valid || jobType.untouched">
+              <span *ngIf="jobType.errors?.['required']"> Job Type is required</span>
+            </div>
           </div>
-          <div class="col-3">
-            <span class="me-2 fw-bolder">To</span>
-            <select id="disabledSelect" class="form-select w-50 d-inline" #to="ngModel" ngModel name="to" required>
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Career Level</label>
+            <select id="disabledSelect" class="form-select w-75" #careerLevel="ngModel" ngModel name="careerLevel"
+              required>
+              <option>Student</option>
+              <option>Entery Level</option>
+              <option>Experienced</option>
             </select>
-            <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert" [hidden]="to.valid || to.untouched">
-                <span *ngIf="to.errors?.['required']">Experience is required</span>
-              </div>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="careerLevel.valid || careerLevel.untouched">
+              <span *ngIf="careerLevel.errors?.['required']"> Career Level is required</span>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label for="salary" class="form-label fw-bolder">Salary</label>
-        <input type="text" class="form-control w-75" id="salary" #salary="ngModel" ngModel name="salary" required>
-        <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert" [hidden]="salary.valid || salary.untouched">
-            <span *ngIf="salary.errors?.['required']">Salary is required</span>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Education Level</label>
+            <select id="disabledSelect" class="form-select w-75" #educationLevel="ngModel" ngModel name="educationLevel"
+              required>
+              <option>Bachelor's Degree</option>
+              <option>Master Degree</option>
+            </select>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="educationLevel.valid || educationLevel.untouched">
+              <span *ngIf="educationLevel.errors?.['required']"> Education Level is required</span>
+            </div>
           </div>
-      </div>
-      <div class="mb-3">
-        <label for="disabledSelect" class="form-label fw-bolder">Job Categories</label>
-        <select id="disabledSelect" class="form-select w-75" #jobCategories="ngModel" ngModel name="jobCategories" required>
-          <option>IT/Software Development</option>
-          <option>Engineering - Telecom/Technology</option>
-          <option>Creative/Design/Art</option>
-        </select>
-        <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert" [hidden]="jobCategories.valid || jobCategories.untouched">
-            <span *ngIf="jobCategories.errors?.['required']">Job Categories is required</span>
-          </div>
-      </div>
-      <div class="mb-3">
-        <label for="jobDescription" class="form-label fw-bolder">Job Description </label>
-        <textarea class="form-control w-75" id="jobDescription" #jobDescription="ngModel" ngModel name="jobDescription"
-          required pattern="[A-Za-z_ ]{20,}"></textarea>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobDescription.valid || jobDescription.untouched">
-            <span *ngIf="jobDescription.errors?.['required']"> Job Description is required</span>
-            <span *ngIf="jobDescription.errors?.['pattern']"> Job Description must be more than 20 letters</span>
-          </div>
-      </div>
-      <div class="mb-3">
-        <label for="jobDescription" class="form-label fw-bolder">Job Requirements </label>
-        <textarea class="form-control w-75" id="jobDescription" #jobRequirements="ngModel" ngModel name="jobRequirements"
-          required ></textarea>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobRequirements.valid || jobRequirements.untouched">
-            <span *ngIf="jobRequirements.errors?.['required']"> Job Requirements is required</span>
-            <span *ngIf="jobRequirements.errors?.['pattern']"> Job Requirements must be more than 20 letters</span>
-          </div>
-      </div>
-      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
-    </form>
-  </div>
-</div>
-
-<div class="row" *ngIf="editMode">
-    <div class="col-5 mt-2">
-      <form #form="ngForm" (ngSubmit)="update(form)">
-        <div class="mb-3">
-          <label for="jobTitle" class="form-label fw-bolder">Job Title</label>
-          <input type="text" pattern="[A-Za-z_ ]{10,}" class="form-control w-75"  id="jobTitle" [(ngModel)]="editingJob.jobTitle" #jobTitle="ngModel"
-            name="jobTitle" required>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobTitle.valid || jobTitle.untouched">
-            <span *ngIf="jobTitle.errors?.['required']"> Job Title is required</span>
-            <span *ngIf="jobTitle.errors?.['pattern']"> Job Title must be more than 10 letters</span>
-          </div>
-        </div>
-  
-        <div class="mb-3">
-          <label for="disabledSelect" class="form-label fw-bolder">Job Type</label>
-          <select id="disabledSelect" class="form-select w-75" #jobType="ngModel" [(ngModel)]="editingJob.jobType" name="jobType" required>
-            <option>Full Time</option>
-            <option>Part Time</option>
-          </select>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobType.valid || jobType.untouched">
-            <span *ngIf="jobType.errors?.['required']"> Job Type is required</span>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="disabledSelect" class="form-label fw-bolder">Career Level</label>
-          <select id="disabledSelect" class="form-select w-75" #careerLevel="ngModel" [(ngModel)]="editingJob.careerLevel" name="careerLevel" required>
-            <option>Student</option>
-            <option>Entery Level</option>
-            <option>Experienced</option>
-          </select>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert" [hidden]="careerLevel.valid || careerLevel.untouched">
-            <span *ngIf="careerLevel.errors?.['required']"> Career Level is required</span>
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="disabledSelect" class="form-label d-block fw-bolder">Experience</label>
-          <div class="row">
-            <div class="col-3">
-              <span class="me-2 fw-bolder">From</span>
-              <select id="disabledSelect" class="form-select w-50 d-inline" #from="ngModel" ngModel name="from" required>
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert" [hidden]="from.valid || from.untouched">
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label d-block fw-bolder">Experience</label>
+            <div class="row">
+              <div class="col-3">
+                <span class="me-2 fw-bolder">From</span>
+                <select id="disabledSelect" class="form-select w-50 d-inline" #from="ngModel" ngModel name="from"
+                  required>
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
+                  [hidden]="from.valid || from.untouched">
                   <span *ngIf="from.errors?.['required']">Experience is required</span>
                 </div>
-            </div>
-            <div class="col-3">
-              <span class="me-2 fw-bolder">To</span>
-              <select id="disabledSelect" class="form-select w-50 d-inline" #to="ngModel" ngModel name="to" required>
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert" [hidden]="to.valid || to.untouched">
+              </div>
+              <div class="col-3">
+                <span class="me-2 fw-bolder">To</span>
+                <select id="disabledSelect" class="form-select w-50 d-inline" #to="ngModel" ngModel name="to" required>
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
+                  [hidden]="to.valid || to.untouched">
                   <span *ngIf="to.errors?.['required']">Experience is required</span>
                 </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="salary" class="form-label fw-bolder">Salary</label>
-          <input type="text" class="form-control w-75" id="salary" #salary="ngModel" [(ngModel)]="editingJob.salary" name="salary" required>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert" [hidden]="salary.valid || salary.untouched">
+          <div class="mb-3">
+            <label for="salary" class="form-label fw-bolder">Salary</label>
+            <input type="text" class="form-control w-75" id="salary" #salary="ngModel" ngModel name="salary" required>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="salary.valid || salary.untouched">
               <span *ngIf="salary.errors?.['required']">Salary is required</span>
             </div>
-        </div>
-        <div class="mb-3">
-          <label for="disabledSelect" class="form-label fw-bolder">Job Categories</label>
-          <select id="disabledSelect" class="form-select w-75" #jobCategories="ngModel" [(ngModel)]="editingJob.jobCategories" name="jobCategories" required>
-            <option>IT/Software Development</option>
-            <option>Engineering - Telecom/Technology</option>
-            <option>Creative/Design/Art</option>
-          </select>
-          <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert" [hidden]="jobCategories.valid || jobCategories.untouched">
+          </div>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Job Categories</label>
+            <select id="disabledSelect" class="form-select w-75" #jobCategories="ngModel" ngModel name="jobCategories"
+              required>
+              <option>IT/Software Development</option>
+              <option>Engineering - Telecom/Technology</option>
+              <option>Creative/Design/Art</option>
+            </select>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="jobCategories.valid || jobCategories.untouched">
               <span *ngIf="jobCategories.errors?.['required']">Job Categories is required</span>
             </div>
-        </div>
-        <div class="mb-3">
-          <label for="jobDescription" class="form-label fw-bolder">Job Description </label>
-          <textarea class="form-control w-75" id="jobDescription" #jobDescription="ngModel" [(ngModel)]="editingJob.jobDescription" name="jobDescription"
-            required ></textarea>
-            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobDescription.valid || jobDescription.untouched">
+          </div>
+          <div class="mb-3">
+            <label for="jobDescription" class="form-label fw-bolder">Job Description </label>
+            <textarea class="form-control w-75" id="jobDescription" #jobDescription="ngModel" ngModel
+              name="jobDescription" required pattern="[A-Za-z_ ]{20,}"></textarea>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75"
+              [hidden]="jobDescription.valid || jobDescription.untouched">
+              <span *ngIf="jobDescription.errors?.['required']"> Job Description is required</span>
+              <span *ngIf="jobDescription.errors?.['pattern']"> Job Description must be more than 20 letters</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="jobDescription" class="form-label fw-bolder">Job Requirements </label>
+            <textarea class="form-control w-75" id="jobDescription" #jobRequirements="ngModel" ngModel
+              name="jobRequirements" required></textarea>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75"
+              [hidden]="jobRequirements.valid || jobRequirements.untouched">
+              <span *ngIf="jobRequirements.errors?.['required']"> Job Requirements is required</span>
+              <span *ngIf="jobRequirements.errors?.['pattern']"> Job Requirements must be more than 20 letters</span>
+            </div>
+          </div>
+          <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="editMode">
+  <div class="card m-auto shadow border-0">
+    <div class="card-body ms-5">
+      <div class="col-5 mt-2">
+        <form #form="ngForm" (ngSubmit)="update(form)">
+          <div class="mb-3">
+            <label for="jobTitle" class="form-label fw-bolder">Job Title</label>
+            <input type="text" pattern="[A-Za-z_ ]{10,}" class="form-control w-75" id="jobTitle"
+              [(ngModel)]="editingJob.jobTitle" #jobTitle="ngModel" name="jobTitle" required>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75"
+              [hidden]="jobTitle.valid || jobTitle.untouched">
+              <span *ngIf="jobTitle.errors?.['required']"> Job Title is required</span>
+              <span *ngIf="jobTitle.errors?.['pattern']"> Job Title must be more than 10 letters</span>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Job Type</label>
+            <select id="disabledSelect" class="form-select w-75" #jobType="ngModel" [(ngModel)]="editingJob.jobType"
+              name="jobType" required>
+              <option>Full Time</option>
+              <option>Part Time</option>
+            </select>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobType.valid || jobType.untouched">
+              <span *ngIf="jobType.errors?.['required']"> Job Type is required</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Career Level</label>
+            <select id="disabledSelect" class="form-select w-75" #careerLevel="ngModel"
+              [(ngModel)]="editingJob.careerLevel" name="careerLevel" required>
+              <option>Student</option>
+              <option>Entery Level</option>
+              <option>Experienced</option>
+            </select>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="careerLevel.valid || careerLevel.untouched">
+              <span *ngIf="careerLevel.errors?.['required']"> Career Level is required</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Education Level</label>
+            <select id="disabledSelect" class="form-select w-75" #educationLevel="ngModel"
+              [(ngModel)]="editingJob.educationLevel" name="careerLevel" required>
+              <option>Bachelor's Degree</option>
+              <option>Master Degree</option>
+             
+            </select>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="educationLevel.valid || educationLevel.untouched">
+              <span *ngIf="educationLevel.errors?.['required']"> Education Level is required</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label d-block fw-bolder">Experience</label>
+            <div class="row">
+              <div class="col-3">
+                <span class="me-2 fw-bolder">From</span>
+                <select id="disabledSelect" class="form-select w-50 d-inline" #from="ngModel" ngModel name="from"
+                  required>
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
+                  [hidden]="from.valid || from.untouched">
+                  <span *ngIf="from.errors?.['required']">Experience is required</span>
+                </div>
+              </div>
+              <div class="col-3">
+                <span class="me-2 fw-bolder">To</span>
+                <select id="disabledSelect" class="form-select w-50 d-inline" #to="ngModel" ngModel name="to" required>
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
+                  [hidden]="to.valid || to.untouched">
+                  <span *ngIf="to.errors?.['required']">Experience is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="salary" class="form-label fw-bolder">Salary</label>
+            <input type="text" class="form-control w-75" id="salary" #salary="ngModel" [(ngModel)]="editingJob.salary"
+              name="salary" required>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="salary.valid || salary.untouched">
+              <span *ngIf="salary.errors?.['required']">Salary is required</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label fw-bolder">Job Categories</label>
+            <select id="disabledSelect" class="form-select w-75" #jobCategories="ngModel"
+              [(ngModel)]="editingJob.jobCategories" name="jobCategories" required>
+              <option>IT/Software Development</option>
+              <option>Engineering - Telecom/Technology</option>
+              <option>Creative/Design/Art</option>
+            </select>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
+              [hidden]="jobCategories.valid || jobCategories.untouched">
+              <span *ngIf="jobCategories.errors?.['required']">Job Categories is required</span>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="jobDescription" class="form-label fw-bolder">Job Description </label>
+            <textarea class="form-control w-75" id="jobDescription" #jobDescription="ngModel"
+              [(ngModel)]="editingJob.jobDescription" name="jobDescription" required></textarea>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75"
+              [hidden]="jobDescription.valid || jobDescription.untouched">
               <span *ngIf="jobDescription.errors?.['required']"> Job Description is required</span>
               <!-- <span *ngIf="jobDescription.errors?.['pattern']"> Job Description must be more than 50 letters</span> -->
             </div>
-        </div>
-        <div class="mb-3">
-          <label for="jobDescription" class="form-label fw-bolder">Job Requirements </label>
-          <textarea class="form-control w-75" id="jobDescription" #jobRequirements="ngModel" [(ngModel)]="editingJob.jobRequirements" name="jobRequirements"
-            required ></textarea>
-            <div class="text-danger fw-bold mt-1 alert alert-danger w-75" [hidden]="jobRequirements.valid || jobRequirements.untouched">
+          </div>
+          <div class="mb-3">
+            <label for="jobDescription" class="form-label fw-bolder">Job Requirements </label>
+            <textarea class="form-control w-75" id="jobDescription" #jobRequirements="ngModel"
+              [(ngModel)]="editingJob.jobRequirements" name="jobRequirements" required></textarea>
+            <div class="text-danger fw-bold mt-1 alert alert-danger w-75"
+              [hidden]="jobRequirements.valid || jobRequirements.untouched">
               <span *ngIf="jobRequirements.errors?.['required']"> Job Requirements is required</span>
               <!-- <span *ngIf="jobRequirements.errors?.['pattern']"> Job Requirements must be more than 50 letters</span> -->
             </div>
-        </div>
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Edit</button>
-      </form>
+          </div>
+          <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Edit</button>
+
+        </form>
+      </div>
     </div>
   </div>
+</div>

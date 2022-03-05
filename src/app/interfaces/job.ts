@@ -9,6 +9,8 @@ export interface Job {
     jobRequirements:string,
     date:Date,
     id?:string,
-    status:string
+    status:string,
+    companyID?:string,
+    educationLevel:string,
 
 }

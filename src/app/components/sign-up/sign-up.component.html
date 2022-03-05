@@ -59,16 +59,17 @@
                                             formControlName="companyEmail">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-6">
                                     <mat-form-field appearance="fill" class="w-100">
-                                        <mat-label>Company Size</mat-label>
-                                        <mat-select formControlName="companySize">
-                                            <mat-option *ngFor="let size of sizes" [value]="size.value">
-                                                {{size.value}} employees
+                                        <mat-label>Company Country</mat-label>
+                                        <mat-select formControlName="companyCountry">
+                                            <mat-option *ngFor="let country of companyCountry" [value]="country.value">
+                                                {{country.value}} 
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
+                              
                                 <div class="col-4">
                                     <mat-form-field appearance="fill" class="w-100">
                                         <mat-label>Company Industry</mat-label>
@@ -84,22 +85,28 @@
 
                             <div>
                                 <button mat-raised-button color="primary" matStepperNext>Next</button>
+                                <button class="btn btn-primary ms-1" routerLink="/login">Log In</button>
                             </div>
+                            
                         </form>
                     </mat-step>
                     <!-- #docregion label -->
-                    <mat-step [stepControl]="secondFormGroup" label="complete company data">
+                    <mat-step [stepControl]="secondFormGroup"  label="complete company data" >
                         <!-- #enddocregion label -->
                         <form [formGroup]="secondFormGroup">
                             <!-- <upload-manager></upload-manager> -->
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <mat-form-field appearance="fill" class="w-100">
-                                        <mat-label>Company Country</mat-label>
-                                        <input matInput placeholder="eg. toshiba@gmail.com"
-                                            formControlName="companyEmail">
+                                        <mat-label>Company Size</mat-label>
+                                        <mat-select formControlName="companySize">
+                                            <mat-option *ngFor="let size of sizes" [value]="size.value">
+                                                {{size.value}} employees
+                                            </mat-option>
+                                        </mat-select>
                                     </mat-form-field>
                                 </div>
+                                <div class="col-1"></div>
                                 <div class="col-8">
                                     <mat-form-field class="example-full-width" appearance="fill" class="w-100">
                                         <mat-label>About Company</mat-label>

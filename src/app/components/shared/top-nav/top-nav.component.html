@@ -1,13 +1,14 @@
 <!-- tobar  -->
 <div class="topbar">
-    <div class="toggle-menue" (click)="toggleSideBar()" matTooltip="toggle SideNav">
+    <div class="toggle-menue" (click)="toggleSideBar()" matTooltip="toggle SideNav" >
         <mat-icon>menu</mat-icon>
     </div>
 
     <!-- serach  -->
     <div class="search">
         <label>
-            <input type="text" placeholder="search here">
+            <input type="text" placeholder="Serech By Job Title..." [(ngModel)]="jobTitle" (ngModelChange)="search()">
+           
         </label>
     </div>
 

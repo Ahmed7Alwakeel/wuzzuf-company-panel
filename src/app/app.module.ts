@@ -19,6 +19,10 @@ import { CardComponent } from './components/shared/card/card.component';
 import { TopNavComponent } from './components/shared/top-nav/top-nav.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { JobDetailsComponent } from './components/handling-jobs/job-details/job-details.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import { JobDetailsComponent } from './components/handling-jobs/job-details/job-
     TopNavComponent,
     MainLayoutComponent,
     JobDetailsComponent,
+    EditProfileComponent,
 
   ],
   imports: [
@@ -45,6 +50,9 @@ import { JobDetailsComponent } from './components/handling-jobs/job-details/job-
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule
 
   ],
   providers: [],

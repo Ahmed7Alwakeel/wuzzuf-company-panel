@@ -25,26 +25,28 @@ editingJob:Job={} as Job
     private title:Title) { }
 
   ngOnInit(): void {
-    if(this.editMode){
-      this.title.setTitle("WUZZUF | Editing-Job")
-    }else{
-      this.title.setTitle("WUZZUF | Add-Jobs")
-    }
+
+     
+    
     this.authService.user.subscribe(user => {
       if (user) {
+      
         console.log(user.uid)
         this.isUser = true;
         this.authService.userID = user.uid
         this.activatedRoute.paramMap.subscribe((paramMap) => {
           this.jobID = paramMap.get('id');
            this.editMode = paramMap.get('id') != null;
-     
-          if(this.jobID!=null)
-          this.jobService.getJobByID(this.jobID).subscribe((job:any)=>{
-            
-            this.editingJob=job
-            
-          })
+          if(this.jobID!=null){
+            this.jobService.getJobByID(this.jobID).subscribe((job:any)=>{
+              this.editingJob=job
+              this.title.setTitle("WUZZUF | Editing-Job")
+              
+            })
+          }else{
+            this.title.setTitle("WUZZUF | Add-Jobs")
+          }
+        
         });
       }
       else {
@@ -52,6 +54,7 @@ editingJob:Job={} as Job
         this.authService.userID = ""
       }
     })
+  
   }
   addJob(form:NgForm){
     let formValue=form.value
@@ -65,7 +68,9 @@ editingJob:Job={} as Job
       jobCategories:formValue.jobCategories,
       jobDescription:formValue.jobDescription,
       jobRequirements:formValue.jobRequirements,
-      status:"PENDING"
+      status:"PENDING",
+      educationLevel:formValue.educationLevel,
+      companyID:this.authService.userID
     }
     this.jobService.addJob(data).then(()=>{
       form.reset()
@@ -73,14 +78,13 @@ editingJob:Job={} as Job
         duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'center',
-
       });
       setTimeout(()=>{
-        this.router.navigate(['/welcome']);
+        this.router.navigate(['/jobs']);
       },1500)
     }
     )
-
+  
   }
 
   update(form:NgForm){
@@ -95,6 +99,7 @@ editingJob:Job={} as Job
       jobCategories:this.editingJob.jobCategories,
       jobDescription:this.editingJob.jobDescription,
       jobRequirements:this.editingJob.jobRequirements,
+      educationLevel:this.editingJob.educationLevel,
       status:"PENDING"
     }
     if(this.jobID!=null)
@@ -114,6 +119,6 @@ this.jobService.updatJob(this.jobID,newJob).then(()=>{
 
   }
 
-
+  
 
 }
