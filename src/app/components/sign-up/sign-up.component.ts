@@ -32,6 +32,13 @@ export class SignUpComponent implements OnInit {
     { value: '501-1000' },
     { value: 'more than 1000' },
   ];
+  companyCountry = [
+    { value: 'Egypt' },
+    { value: 'Saudi Arabia ' },
+    { value: 'United Arab Emirates' },
+    { value: 'Sudan' },
+    { value: 'Other' },
+  ];
 
   errorMsg: string = ''
 
@@ -59,10 +66,12 @@ export class SignUpComponent implements OnInit {
       companyName: ['', Validators.required],
       companySize: ['', Validators.required],
       companyEmail: ['', Validators.required],
+      companyCountry: ['', Validators.required],
       companyIndustry: ['', Validators.required],
     });
 
     this.secondFormGroup = this._formBuilder.group({
+      companySize: ['', Validators.required],
       aboutCompany: ['', Validators.required],
       logo: ['', Validators.required],
 
@@ -80,6 +89,7 @@ export class SignUpComponent implements OnInit {
       companySize: formData.companySize,
       companyIndustry: formData.companyIndustry,
       aboutCompany: formData.aboutCompany,
+      companyCountry:formData.companyCountry,
       logo: formData.logo
     }
 

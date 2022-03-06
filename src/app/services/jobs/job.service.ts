@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -8,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class JobService {
+  jobs: Job[] = []
 
   constructor(private fireStore: AngularFirestore,
     private authService: AuthService) { }
@@ -28,5 +30,6 @@ export class JobService {
   updatJob(jobID: string, job: Job) {
     return this.fireStore.doc(`company/${this.authService.userID}/jobs/${jobID}`).update(job)
   }
+
 
 }

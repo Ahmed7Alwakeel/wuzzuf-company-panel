@@ -21,10 +21,16 @@
                     <span class="title">Jobs</span>
                 </a>
             </li>
+            <li>
+                <a routerLink="/edit-profile">
+                    <mat-icon>edit</mat-icon>
+                    <span class="title">Edit Profile</span>
+                </a>
+            </li>
             <li (click)="logOut()">
-                <a>
+                <a style="cursor: pointer;">
                     <mat-icon>logout</mat-icon>
-                    <span class="title">logOut</span>
+                    <span class="title">Log Out</span>
                 </a>
             </li>
         </ul>
@@ -32,10 +38,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <!-- <div class="toggle-menue" (click)="sidenav.toggle()">
-            <mat-icon *ngIf="!opened">menu</mat-icon>
-            <mat-icon *ngIf="opened">close</mat-icon>
-        </div> -->
         <ng-content select="ng-container"></ng-content>
+        <!-- <mat-spinner *ngIf="loaderServ.isLoading" class="m-auto mt-5"></mat-spinner> -->
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,18 +1,23 @@
-<h1 class="text-primary fw-bold p-3">Welcome to dashboard</h1>
-<div class="row">
-    <div class="col-sm-12 col-md-4 col-lg-3">
-        <card title="Total Jobs" link="/jobs" numbers={{jobs.length}} icon="work"></card>
+<ng-container *ngIf="!loaderServ.isLoading">
+    <h1 class="text-primary fw-bold p-3">Welcome to dashboard</h1>
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            <card title="Total Jobs" routerLink="/jobs" numbers={{jobs.length}} icon="work"></card>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            <card title="PENDING Jobs" routerLink="/jobs" [queryParams]="{status:'pending'}"
+                numbers={{pendingJobs.length}} icon="work"></card>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            <card title="ACCEPTED Jobs" routerLink="/jobs" [queryParams]="{status:'accepted'}"
+                numbers={{acceptedJobs.length}} icon="work"></card>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
+            <card title="REFUSED Jobs" routerLink="/jobs" [queryParams]="{status:'refused'}"
+                numbers={{refusedJobs.length}} icon="work"></card>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3">
+            <card title="Total Applications" routerLink="/jobs" numbers={{refusedJobs.length}} icon="work"></card>
+        </div>
     </div>
-    <div class="col-sm-12 col-md-4 col-lg-3">
-        <card title="PENDING Jobs" link="/jobs" numbers={{pendingJobs.length}} icon="work"></card>
-    </div>
-    <div class="col-sm-12 col-md-4 col-lg-3">
-        <card title="ACCEPTED Jobs" link="/jobs" numbers={{acceptedJobs.length}} icon="work"></card>
-    </div>
-    <div class="col-sm-12 col-md-4 col-lg-3 mb-3">
-        <card title="REFUSED Jobs" link="/jobs" numbers={{refusedJobs.length}} icon="work"></card>
-    </div>
-    <div class="col-sm-12 col-md-4 col-lg-3">
-        <card title="Total Applications" link="/jobs" numbers={{refusedJobs.length}} icon="work"></card>
-    </div>
-</div>
+</ng-container>

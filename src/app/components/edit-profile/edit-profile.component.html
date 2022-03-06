@@ -1,0 +1,73 @@
+<ng-container *ngIf="!loaderServ.isLoading">
+  <section class="row">
+    <h1 class="fw-bolder text-primary">Company Data</h1>
+    <div class="card m-auto shadow border-0 ">
+      <div class="card-body ms-5 row ">
+        <form #form="ngForm" class="row" (ngSubmit)="updateDate(form)">
+          <div class="col-5">
+            <label class="form-label fw-bold">Comapny Email</label>
+            <input type="text" #companyEmail="ngModel" name="companyEmail" class="form-control fw-bolder" disabled
+              [(ngModel)]="company.companyEmail">
+          </div>
+          <div class="col-5 mt-2">
+            <label class="form-label fw-bold">Comapny Name</label>
+            <input type="text" #companyName="ngModel" name="companyName" class="form-control fw-bolder"
+              [(ngModel)]="company.companyName">
+          </div>
+          <div class="text-danger fw-bold mt-1" role="alert" [hidden]="companyName.valid || companyName.untouched">
+            <span *ngIf="companyName.errors?.['required']">Company Name is required</span>
+          </div>
+          <div class="col-5 mt-2">
+            <label class="form-label fw-bold">Comapny Country</label>
+            <select id="disabledSelect" #companyCountry="ngModel" ngModel name="companyCountry"
+              class="form-select  d-inline fw-bolder" [(ngModel)]="company.companyCountry" required>
+              <option class="fw-bolder" *ngFor="let country of companyCountries"
+                [selected]="company.companyCountry==country.value">
+                {{country.value}}</option>
+            </select>
+            <div class="text-danger fw-bold mt-1" role="alert"
+              [hidden]="companyCountry.valid || companyCountry.untouched">
+              <span *ngIf="companyCountry.errors?.['required']">Company Country is required</span>
+            </div>
+          </div>
+          <div class="col-5 mt-3">
+            <label class="form-label fw-bold">Comapny Industry</label>
+            <select id="disabledSelect" #companyIndustry="ngModel" name="companyIndustry"
+              class="form-select d-inline fw-bolder" [(ngModel)]="company.companyIndustry" required>
+              <option class="fw-bolder" *ngFor="let industry of industries"
+                [selected]="company.companyIndustry==industry.name">
+                {{industry.name}}</option>
+            </select>
+            <div class="text-danger fw-bold mt-1" role="alert"
+              [hidden]="companyIndustry.valid || companyIndustry.untouched">
+              <span *ngIf="companyIndustry.errors?.['required']">Company Industry is required</span>
+            </div>
+          </div>
+          <div class="col-5 mt-3 me-10">
+            <label class="form-label fw-bold">Comapny Size</label>
+            <select id="disabledSelect" #companySize="ngModel" name="companySize" class="form-select d-inline fw-bolder"
+              [(ngModel)]="company.companySize" required>
+              <option class="fw-bolder" *ngFor="let size of size" [selected]="company.companySize==size.value">
+                {{size.value}}</option>
+            </select>
+            <div class="text-danger fw-bold mt-1" role="alert" [hidden]="companySize.valid || companySize.untouched">
+              <span *ngIf="companySize.errors?.['required']">Company Size is required</span>
+            </div>
+          </div>
+          <div class="col-10  mt-3">
+            <label class="form-label fw-bold">About Comapny</label>
+            <textarea class="form-control w-50 fw-bolder" #aboutCompany="ngModel" name="aboutCompany"
+              [(ngModel)]="company.aboutCompany" required></textarea>
+          </div>
+          <div class="text-danger fw-bold mt-1" role="alert" [hidden]="aboutCompany.valid || aboutCompany.untouched">
+            <span *ngIf="aboutCompany.errors?.['required']"> About Company is required</span>
+          </div>
+          <div class="col-3 mt-3">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary fw-bold">Update Data</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+</ng-container>

@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Job } from 'src/app/interfaces/job';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JobService } from 'src/app/services/jobs/job.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private jobService: JobService,
     private authService: AuthService,
-    private title: Title
+    private title: Title,
+    public loaderServ: LoaderService
 
   ) { }
 
@@ -33,6 +35,7 @@ export class DashboardComponent implements OnInit {
               ...ele.payload.doc.data()
             }
           })
+
           for (let i = 0; i < this.jobs.length; i++) {
             console.log(this.jobs[i].status)
             if (this.jobs[i].status === "PENDING") {
@@ -43,6 +46,7 @@ export class DashboardComponent implements OnInit {
               this.refusedJobs.push(this.jobs[i])
             }
           }
+          this.loaderServ.isLoading = false
         })
 
       }

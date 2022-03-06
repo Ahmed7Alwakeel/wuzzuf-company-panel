@@ -24,6 +24,11 @@ import { DetailsCardComponent } from './components/shared/details-card/details-c
 import { JobApplicantsComponent } from './components/application/job-applicants/job-applicants.component';
 import { ApplicationDetailsComponent } from './components/application/application-details/application-details.component';
 import { QuillModule } from 'ngx-quill'
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +44,11 @@ import { QuillModule } from 'ngx-quill'
     TopNavComponent,
     MainLayoutComponent,
     JobDetailsComponent,
+    EditProfileComponent,
     DetailsCardComponent,
     JobApplicantsComponent,
     ApplicationDetailsComponent,
+    SpinnerComponent
   ],
   imports: [
     FormsModule,
@@ -51,8 +58,12 @@ import { QuillModule } from 'ngx-quill'
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    QuillModule.forRoot(),
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule,
     MaterialModule,
-    QuillModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]

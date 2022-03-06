@@ -39,24 +39,27 @@ export class HandlingJobsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.editMode) {
-      this.title.setTitle("WUZZUF | Editing-Job")
-    } else {
-      this.title.setTitle("WUZZUF | Add-Jobs")
-    }
+
 
     this.authService.user.subscribe(user => {
       if (user) {
-        // console.log(user.uid)
+
+        console.log(user.uid)
         this.isUser = true;
         this.authService.userID = user.uid
         this.activatedRoute.paramMap.subscribe((paramMap) => {
           this.jobID = paramMap.get('id');
           this.editMode = paramMap.get('id') != null;
-          if (this.jobID != null)
+          if (this.jobID != null) {
             this.jobService.getJobByID(this.jobID).subscribe((job: any) => {
               this.editingJob = job
+              this.title.setTitle("WUZZUF | Editing-Job")
+
             })
+          } else {
+            this.title.setTitle("WUZZUF | Add-Jobs")
+          }
+
         });
       }
       else {
@@ -67,17 +70,8 @@ export class HandlingJobsComponent implements OnInit {
 
   }
 
-
-
-  test(form: NgForm) {
-    let formValue = form.value
-    console.log(formValue.jobDescription);
-
-  }
-
   addJob(form: NgForm) {
     let formValue = form.value
-
     let data: Job = {
       date: new Date(),
       jobTitle: formValue.jobTitle,
@@ -88,7 +82,9 @@ export class HandlingJobsComponent implements OnInit {
       jobCategories: formValue.jobCategories,
       jobDescription: formValue.jobDescription,
       jobRequirements: formValue.jobRequirements,
-      status: "PENDING"
+      status: "PENDING",
+      educationLevel: formValue.educationLevel,
+      companyID: this.authService.userID
     }
 
     this.jobService.addJob(data).then(() => {
@@ -97,10 +93,9 @@ export class HandlingJobsComponent implements OnInit {
         duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'center',
-
       });
       setTimeout(() => {
-        this.router.navigate(['/welcome']);
+        this.router.navigate(['/jobs']);
       }, 1500)
     }
     )
@@ -108,6 +103,7 @@ export class HandlingJobsComponent implements OnInit {
   }
 
   update(form: NgForm) {
+
     let newJob = {
       date: new Date(),
       jobTitle: this.editingJob.jobTitle,
@@ -118,6 +114,7 @@ export class HandlingJobsComponent implements OnInit {
       jobCategories: this.editingJob.jobCategories,
       jobDescription: this.editingJob.jobDescription,
       jobRequirements: this.editingJob.jobRequirements,
+      educationLevel: this.editingJob.educationLevel,
       status: "PENDING"
     }
 

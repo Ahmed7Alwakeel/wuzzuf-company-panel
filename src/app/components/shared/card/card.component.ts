@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
   @Input('link') link!: string;
   @Input('numbers') numbers!: string;
   @Input('icon') icon!: string;
+  @Input('params') params!: any;
 
   constructor() { }
 
