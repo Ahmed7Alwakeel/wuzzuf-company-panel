@@ -1,7 +1,9 @@
 <!-- <loading-spinner *ngIf="loaderSer.isLoading"></loading-spinner> -->
 <ng-container *ngIf="!loaderSer.isLoading">
   <h1 class="text-primary fw-bold p-3">Jobs</h1>
-  <h1 class="alert-primary p-3" *ngIf="jobs.length==0">There's No Jobs</h1>
+  <h1 class="alert-primary p-3" *ngIf="jobService.jobs.length==0">There's No Jobs</h1>
+  <div class="card m-auto shadow border-0 ">
+    <div class="card-body ms-5 row ">
   <table class="table mt-2">
     <thead>
       <tr>
@@ -14,24 +16,35 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let job of jobs,let i=index" [routerLink]="['/job-detail',job.id]" style="cursor: pointer;"
+      <tr *ngFor="let job of jobService.jobs,let i=index"  style="cursor: pointer;"
         class="fw-bolder" matTooltip="View Details" matTooltipPosition="below">
         <th scope="row">{{i+1}}</th>
-        <td>{{job.jobTitle}}</td>
-        <td>{{job.jobType}}</td>
-        <td>{{job.jobCategories}}</td>
+        <td [routerLink]="['/job-detail',job.id]">{{job.jobTitle}}</td>
+        <td [routerLink]="['/job-detail',job.id]">{{job.jobType}}</td>
+        <td >{{job.jobCategories}}</td>
         <ng-container [ngSwitch]="job.status">
-          <td *ngSwitchCase="'PENDING'"><span class="badge rounded-pill bg-secondary mt-2">{{job.status}}</span></td>
-          <td *ngSwitchCase="'ACCEPTED'"><span class="badge rounded-pill bg-success mt-2">{{job.status}}</span></td>
-          <td *ngSwitchCase="'REFUSED'"><span class="badge rounded-pill bg-danger mt-2">{{job.status}}</span></td>
+          <td [routerLink]="['/job-detail',job.id]" *ngSwitchCase="'PENDING'"><span class="badge rounded-pill bg-secondary mt-2">{{job.status}}</span></td>
+          <td [routerLink]="['/job-detail',job.id]" *ngSwitchCase="'ACCEPTED'"><span class="badge rounded-pill bg-success mt-2">{{job.status}}</span></td>
+          <td [routerLink]="['/job-detail',job.id]" *ngSwitchCase="'REFUSED'"><span class="badge rounded-pill bg-danger mt-2">{{job.status}}</span></td>
         </ng-container>
 
         <td>
           <button mat-raised-button color="primary" class="me-2" [routerLink]="['/edit-jobs',job.id]">Edit</button>
-          <button mat-raised-button color="warn" (click)="deleteJob(job)">Delete</button>
+          <button mat-raised-button color="warn" 
+         
+          (click)="deleteJob(job)"
+       
+          >Delete</button>
         </td>
 
       </tr>
     </tbody>
-  </table><button class="btn btn-primary" routerLink="/add-jobs">Add New Job</button>
+  </table>
+  <div class="col-3">
+    <button class="btn btn-primary fw-bold" routerLink="/add-jobs">Add New Job</button>
+  </div>
+  
+    </div>
+    </div>
+  
 </ng-container>

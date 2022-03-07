@@ -56,7 +56,7 @@
                                 <div class="col-6">
                                     <mat-form-field appearance="fill" class="w-100">
                                         <mat-label>Business Email</mat-label>
-                                        <input matInput placeholder="eg. toshiba@gmail.com"
+                                        <input matInput placeholder="eg. company@org.eg.com" pattern="^\w+@[org]+\.[a-zA-Z]+?\.[a-zA-Z]{2,3}$"
                                             formControlName="companyEmail">
                                     </mat-form-field>
                                 </div>
@@ -118,7 +118,7 @@
 
                                 <div class="col-8">
                                     <mat-label class="text-primary me-5">Company Logo</mat-label>
-                                    <input type="file" formControlName="logo">
+                                    <input type="file" formControlName="logo" #logo>
                                 </div>
                             </div>
                             <div class="mt-3">

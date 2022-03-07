@@ -29,6 +29,8 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import{AngularFireStorageModule} from '@angular/fire/storage'
 
 @NgModule({
   declarations: [
@@ -48,13 +50,16 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     DetailsCardComponent,
     JobApplicantsComponent,
     ApplicationDetailsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    DialogComponent,
+ 
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -63,6 +68,7 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     Ng2OrderModule,
     NgxPaginationModule,
     MaterialModule,
+   
 
   ],
   providers: [],

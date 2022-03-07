@@ -1,0 +1,14 @@
+
+    <div class="d-flex align-items-center justify-content-end">
+       
+        <button mat-icon-button [mat-dialog-close]="false">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+<div mat-dialog-content >
+    <h1 class="text-center">Are You Sure?</h1>
+</div>
+<div mat-dialog-actions [align]="'center'">
+<button mat-raised-button class="fw-bold" [mat-dialog-close]="false">No</button>
+<button mat-raised-button  class="fw-bold btn-danger" [mat-dialog-close]="true">Yes</button>
+</div>

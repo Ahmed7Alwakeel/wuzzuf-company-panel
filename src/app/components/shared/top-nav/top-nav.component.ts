@@ -1,10 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/interfaces/company';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { JobService } from 'src/app/services/jobs/job.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { DialogComponent } from '../../dialog/dialog.component';
 import { JobsComponent } from '../../jobs/jobs.component';
 
 @Component({
@@ -16,6 +18,7 @@ import { JobsComponent } from '../../jobs/jobs.component';
 export class TopNavComponent implements OnInit {
   jobTitle!: any
   company!: Company
+  
 
 
   // output to sidebar component
@@ -25,7 +28,8 @@ export class TopNavComponent implements OnInit {
     private authService: AuthService,
     private companyService: CompanyService,
     private route: Router,
-    public  loaderServ: LoaderService
+    public  loaderServ: LoaderService,
+    private dialog:MatDialog
   ) { }
 
 
@@ -74,9 +78,22 @@ export class TopNavComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.logOut().then(() => {
-      this.route.navigate(['/login'])
+    this.dialog.open(DialogComponent, {
+
+      height: '200px',
+      width: '250px',
+      disableClose: true
+
+    }).afterClosed().subscribe((msg) => {
+      if (msg == true) {
+        this.authService.logOut().then(() => {
+          this.route.navigate(['/login'])
+        })
+
+      }
+
     })
+
   }
 
 }
