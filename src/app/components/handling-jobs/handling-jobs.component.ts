@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Job } from 'src/app/interfaces/job';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JobService } from 'src/app/services/jobs/job.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 @Component({
   selector: 'app-handling-jobs',
@@ -35,11 +36,12 @@ export class HandlingJobsComponent implements OnInit {
     private authService: AuthService,
     private snakBar: MatSnackBar,
     private router: Router,
-    private title: Title) { }
+    private title: Title,
+    private loaderService:LoaderService) { }
 
   ngOnInit(): void {
 
-
+this.loaderService.isLoading=false;
 
     this.authService.user.subscribe(user => {
       if (user) {
@@ -53,6 +55,7 @@ export class HandlingJobsComponent implements OnInit {
           if (this.jobID != null) {
             this.jobService.getJobByID(this.jobID).subscribe((job: any) => {
               this.editingJob = job
+              console.log(this.editingJob.careerLevel)
               this.title.setTitle("WUZZUF | Editing-Job")
 
             })
@@ -84,7 +87,17 @@ export class HandlingJobsComponent implements OnInit {
       jobRequirements: formValue.jobRequirements,
       status: "PENDING",
       educationLevel: formValue.educationLevel,
-      companyID: this.authService.userID
+      companyID: this.authService.userID,
+      jobTitleAR:formValue.jobTitleAR,
+      jobTypeAR:formValue.jobTypeAR,
+      careerLevelAR:formValue.careerLevelAR,
+      experienceAR:` ${formValue.toAR} الي ${formValue.fromAR} من`,
+      salaryAR:formValue.salaryAR,
+      jobCategoriesAR:formValue.jobCategoriesAR,
+      jobDescriptionAR:formValue.jobDescriptionAR,
+      jobRequirementsAR:formValue.jobRequirementsAR,
+      educationLevelAR:formValue.educationLevelAR
+  
     }
 
     this.jobService.addJob(data).then(() => {

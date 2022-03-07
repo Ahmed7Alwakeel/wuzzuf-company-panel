@@ -7,25 +7,28 @@
     <!-- serach  -->
     <div class="search ">
         <label>
-            <input type="text" class="shadow" placeholder="Serech By Job Title..." [(ngModel)]="jobTitle"
+            <input type="text" class="shadow" placeholder="Search By Job Title..." [(ngModel)]="jobTitle"
                 (ngModelChange)="search()">
         </label>
     </div>
 
     <!-- user img  -->
     <div class="user" [matMenuTriggerFor]="menu" matTooltip="profile">
-        <img src="assets/profile-pic.png" alt="useriImg">
+        <img [src]="company.logo?company.logo:'assets/logo.png'" alt="useriImg">
     </div>
     <mat-menu #menu="matMenu" class="profile-menue mt-1 me-3">
         <div class="user-container">
             <div class="user-profile d-flex justify-content-evenly align-items-center fw-bold" mat-menu-item
                 routerLink="/edit-profile">
-                <img src="assets/profile-pic.png" alt="useriImg" class="rounded-circle user-img">
-                <h3 class="user-name p-2">{{company?.companyEmail}}<span class="d-block">See Your profile</span></h3>
+                <img [src]="company.logo?company.logo:'assets/logo.png'" alt="useriImg" class="rounded-circle user-img">
+                <h3 class="user-name p-2">{{company.companyEmail}}<span class="d-block">See Your profile</span></h3>
 
             </div>
             <mat-divider class="mt-3 mb-3"></mat-divider>
-            <button mat-menu-item (click)="logOut()">
+            <button mat-menu-item 
+            
+            (click)="logOut()"
+            >
                 <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
                 Logout
             </button>

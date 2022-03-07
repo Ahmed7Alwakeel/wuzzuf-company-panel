@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';;
 import { CompanySize } from 'src/app/interfaces/company-size';
 import { Industry } from 'src/app/interfaces/industry';
@@ -18,7 +18,7 @@ import { IndustryService } from 'src/app/services/industry/industry.service';
 
 
 export class SignUpComponent implements OnInit {
-
+  @ViewChild('logo') logo!: ElementRef
   isLinear = false;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
@@ -81,16 +81,17 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    let formData = { ...this.firstFormGroup.value, ...this.secondFormGroup.value };
 
+    let logo: File = (<HTMLInputElement>this.logo.nativeElement).files![0]
+    let formData = { ...this.firstFormGroup.value, ...this.secondFormGroup.value };
     const companyModel: Company = {
       companyName: formData.companyName,
       companyEmail: formData.companyEmail,
       companySize: formData.companySize,
       companyIndustry: formData.companyIndustry,
       aboutCompany: formData.aboutCompany,
-      companyCountry:formData.companyCountry,
-      logo: formData.logo
+      companyCountry: formData.companyCountry,
+
     }
 
     const empModel: CompanyEmployee = {
@@ -100,27 +101,10 @@ export class SignUpComponent implements OnInit {
       mobileNo: formData.mobileNo,
     }
 
-    console.log(companyModel);
-    console.log(empModel);
-
     this._authServ.signUp(formData.companyEmail, formData.password).then((response: any) => {
-      this._companyServ.addNewCompany(response.user.uid, companyModel, empModel).then(() => {
+      this._companyServ.addNewCompany(response.user.uid,companyModel, logo, empModel)
 
-        this._snackBar.open('Signed up sucessfuly', 'x', {
-          duration: 3000
-        });
-        this.router.navigate([''])
 
-      }).catch((err: any) => {
-        this._snackBar.open(err.message, 'x', {
-          duration: 3000
-        });
-      })
-    }).catch((err: any) => {
-      this._snackBar.open(err.message, 'x', {
-        duration: 3000
-      });
     })
   }
-
 }

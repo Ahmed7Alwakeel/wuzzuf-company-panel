@@ -12,5 +12,14 @@ export interface Job {
     status:string,
     companyID?:string,
     educationLevel:string,
+    jobTitleAR?:string,
+    jobTypeAR?:string,
+    careerLevelAR?:string,
+    experienceAR?:string,
+    salaryAR?:string,
+    jobCategoriesAR?:string,
+    jobDescriptionAR?:string,
+    jobRequirementsAR?:string,
+    educationLevelAR?:string,
 
 }

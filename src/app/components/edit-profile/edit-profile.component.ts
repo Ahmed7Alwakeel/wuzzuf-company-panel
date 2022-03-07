@@ -74,7 +74,7 @@ export class EditProfileComponent implements OnInit {
       companyIndustry: formValue.companyIndustry,
       companyName: formValue.companyName,
       companySize: formValue.companySize,
-      logo: "",
+  
       companyCountry: formValue.companyCountry
     }
     this.companyService.updatCompany(newData, this.userId).then(() => {

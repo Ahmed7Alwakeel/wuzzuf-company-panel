@@ -14,10 +14,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
   imports: [
+    MatDialogModule,
     MatFormFieldModule,
     MatStepperModule,
     MatIconModule,
@@ -35,6 +37,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
   ],
   exports: [
+    MatDialogModule,
     MatFormFieldModule,
     MatStepperModule,
     MatIconModule,

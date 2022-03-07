@@ -1,4 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { Job } from 'src/app/interfaces/job';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JobService } from 'src/app/services/jobs/job.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,8 @@ export class JobsComponent implements OnInit {
   jobs: Job[] = []
   editMode = false;
   status!: string | null
+  confirmClicked = false;
+  cancelClicked = false;
 
   constructor(public jobService: JobService,
     private authService: AuthService,
@@ -29,7 +33,8 @@ export class JobsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private title: Title,
-    public loaderSer: LoaderService
+    public loaderSer: LoaderService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +51,7 @@ export class JobsComponent implements OnInit {
         })
 
         this.jobService.getJobs().subscribe((job: any) => {
-          this.jobs = job.map((ele: any) => {
+          this.jobService.jobs = job.map((ele: any) => {
             console.log(ele.payload.doc.data());
             this.loaderSer.isLoading = false
             return {
@@ -58,7 +63,7 @@ export class JobsComponent implements OnInit {
 
           //CHECK IF THE status is null then render the job with its status
           if (this.status != null) {
-            this.jobs = this.jobs.filter((job) => job.status.toLowerCase() == this.status)
+            this.jobService.jobs = this.jobService.jobs.filter((job) => job.status.toLowerCase() == this.status)
             console.log(this.jobs);
           }
         })
@@ -73,17 +78,30 @@ export class JobsComponent implements OnInit {
 
 
   deleteJob(job: Job) {
-    if (job.id != null)
-      this.jobService.deleteJob(job.id).then(() => {
-        this.snakBar.open("Job Deleted successfuly", 'Delete', {
-          duration: 2000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
-      }).then(() => {
-        this.router.navigate(['/jobs'])
-      })
+    this.dialog.open(DialogComponent, {
+      height: '200px',
+      width: '250px',
+      disableClose: true,
+    }).afterClosed().subscribe((msg) => {
+      if (msg == true) {
+        if (job.id != null)
+          this.jobService.deleteJob(job.id).then(() => {
+            this.snakBar.open("Job Deleted successfuly", 'Delete', {
+              duration: 2000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            });
+          }).then(() => {
+            this.router.navigate(['/jobs'])
+          })
+      }
+
+
+
+    })
   }
+
+
 
 }
 

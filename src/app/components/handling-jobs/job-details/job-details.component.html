@@ -5,9 +5,9 @@
         </button>
 
         <section class="job-header">
-            <details-card title={{selectedJob.jobTitle}} subtitle="subtitle">
+            <details-card title={{selectedJob.jobTitle}} >
                 <div class="applicants d-flex align-items-center">
-                    <span class="applicants-number fw-bold me-2">73</span>
+                    <span class="applicants-number fw-bold me-2">{{joApplications.length}}</span>
                     <span class="position">Applicants for open position</span>
                     <button mat-raised-button class="ms-5 btn-success" [routerLink]="['/applications',jobID]">
                         <mat-icon>view_list</mat-icon> View Applicants

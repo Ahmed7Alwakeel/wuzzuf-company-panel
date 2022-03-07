@@ -10,7 +10,7 @@
 
   .toggle-menue {
     position: relative;
-    color: blue;
+    color: $mainBlueColor;
     top: -11px;
     width: 60px;
     height: 60px;
@@ -96,6 +96,6 @@
 }
 
 ::placeholder {
-  color: rgba(85, 85, 219,.4);
+  color:  $mainBlueColor;
   font-weight: 700;
 }
