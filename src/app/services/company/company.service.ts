@@ -17,6 +17,7 @@ export class CompanyService {
   updatCompany(company: Company,userID:string) {
     return this.firestore.doc(`company/${userID}`).update(company)
   }
+  
   async addNewCompany(id: string, companyModel: any, empModel: any) {
     return this.firestore.doc(`company/${id}`).set(companyModel).then(() => {
       this.firestore.collection(`company/${id}/employees`).add(empModel)
