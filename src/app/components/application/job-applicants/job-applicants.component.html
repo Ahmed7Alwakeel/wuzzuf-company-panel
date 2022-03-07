@@ -1,7 +1,8 @@
 <ng-container *ngIf="!loaderServ.isLoading">
-    <h1 class="alert-primary p-3 mt-3" *ngIf="joApplications.length==0">There's No Jobs</h1>
+    <h1 class="text-primary fw-bold p-3">Applications</h1>
+    <h1 class="alert-primary p-3 mt-3" *ngIf="joApplications.length==0">There's No Applications</h1>
     <div class="application-wrapper">
-        <h1 class="text-primary fw-bold p-3">Applications</h1>
+        
         <div class="row">
             <div class="col-sm-12 col-md-4 col-lg-3 mt-3 application"
                 *ngFor="let application of joApplications ; index as i "

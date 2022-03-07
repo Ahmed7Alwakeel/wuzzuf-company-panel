@@ -102,7 +102,7 @@ export class SignUpComponent implements OnInit {
     }
 
     this._authServ.signUp(formData.companyEmail, formData.password).then((response: any) => {
-      this._companyServ.addNewCompany(response.user.uid, companyModel, logo, empModel)
+      this._companyServ.addNewCompany(response.user.uid,companyModel, logo, empModel)
 
 
     })

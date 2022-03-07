@@ -55,6 +55,7 @@ this.loaderService.isLoading=false;
           if (this.jobID != null) {
             this.jobService.getJobByID(this.jobID).subscribe((job: any) => {
               this.editingJob = job
+              console.log(this.editingJob.careerLevel)
               this.title.setTitle("WUZZUF | Editing-Job")
 
             })

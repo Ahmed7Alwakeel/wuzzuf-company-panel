@@ -2,9 +2,9 @@
 <ng-container *ngIf="!loaderSer.isLoading">
   <h1 class="text-primary fw-bold p-3">Jobs</h1>
   <h1 class="alert-primary p-3" *ngIf="jobService.jobs.length==0">There's No Jobs</h1>
-  <div class="card m-auto shadow border-0 ">
+  <div class="card m-auto shadow border-0 " *ngIf="jobService.jobs.length!=0">
     <div class="card-body ms-5 row ">
-  <table class="table mt-2">
+  <table class="table mt-2 table-responsive" >
     <thead>
       <tr>
         <th scope="col">#Number</th>
@@ -46,5 +46,5 @@
   
     </div>
     </div>
-  
+    <button class="btn btn-primary fw-bold" routerLink="/add-jobs" *ngIf="jobService.jobs.length==0">Add New Job</button>
 </ng-container>

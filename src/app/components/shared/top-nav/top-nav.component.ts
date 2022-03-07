@@ -17,7 +17,7 @@ import { JobsComponent } from '../../jobs/jobs.component';
 
 export class TopNavComponent implements OnInit {
   jobTitle!: any
-  company!: Company
+  company: Company={} as Company
   
 
 
@@ -37,6 +37,7 @@ export class TopNavComponent implements OnInit {
     this.authService.user.subscribe(user => {
       if (user) {
         this.authService.userID = user.uid
+        console.log(this.authService.userID)
 
         this.jobService.getJobs().subscribe((job: any) => {
           this.jobService.jobs = job.map((ele: any) => {
@@ -73,8 +74,10 @@ export class TopNavComponent implements OnInit {
 
   getCompany() {
     this.companyService.getComapnyByID().subscribe((company: any) => {
+      console.log(company)
       this.company = company
     })
+    console.log(this.company)
   }
 
   logOut() {

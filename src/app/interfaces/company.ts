@@ -4,6 +4,6 @@ export interface Company {
     companyIndustry: string;
     companyName: string;
     companySize: string;
-    // logo: any;
+    logo?: string;
     companyCountry:string
 }
