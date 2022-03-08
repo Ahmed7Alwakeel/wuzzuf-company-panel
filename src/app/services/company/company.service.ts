@@ -16,8 +16,27 @@ export class CompanyService {
     return this.firestore.doc(`company/${this.authService.userID}`).valueChanges()
 
   }
-  updatCompany(company: Company, userID: string) {
-    return this.firestore.doc(`company/${userID}`).update(company)
+  updatCompany(company: Company,image:File, userID: string) {
+    //return this.firestore.doc(`company/${userID}`).update(company)
+    return new Promise((resolve, reject) => {
+
+      let ref = this.storage.ref('company/' + image.name)
+      ref.put(image).then(() => {
+        ref.getDownloadURL().subscribe(logo => {
+          this.firestore.doc(`company/${userID}`).update({...company,logo}).then(() => {
+           
+              resolve(console.log("add"))
+           
+
+          }).catch(err => console.log(err))
+        })
+      })
+
+
+    })
+     
+   
+
   }
   addNewCompany(id:string,companyModel: Company, image: File, empModel: any) {
     return new Promise((resolve, reject) => {

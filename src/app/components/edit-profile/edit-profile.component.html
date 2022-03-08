@@ -6,7 +6,7 @@
         <form #form="ngForm" class="row" (ngSubmit)="updateDate(form)">
           <div class="col-5">
             <label class="form-label fw-bold">Comapny Email</label>
-            <input type="text" #companyEmail="ngModel" name="companyEmail" class="form-control fw-bolder" disabled
+            <input type="text"  name="companyEmail" class="form-control fw-bolder" disabled
               [(ngModel)]="company.companyEmail">
           </div>
           <div class="col-5 mt-2">
@@ -61,6 +61,11 @@
           </div>
           <div class="text-danger fw-bold mt-1" role="alert" [hidden]="aboutCompany.valid || aboutCompany.untouched">
             <span *ngIf="aboutCompany.errors?.['required']"> About Company is required</span>
+          </div>
+          <div class="col-12 mt-2">
+            <label class="form-label fw-bold">Comapny Logo</label>
+            <input type="file" name="companyLogo" class="form-control fw-bolder w-25"
+               #logo [(ngModel)]="company.logo" >
           </div>
           <div class="col-3 mt-3">
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary fw-bold">Update Data</button>

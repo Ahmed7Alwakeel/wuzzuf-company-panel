@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { Industry } from 'src/app/interfaces/industry';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { CompanyService } from 'src/app/services/company/company.service';
 import { IndustryService } from 'src/app/services/industry/industry.service';
+import { JobService } from 'src/app/services/jobs/job.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
 
@@ -19,6 +20,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 export class EditProfileComponent implements OnInit {
   company!: Company
   userId: string = ""
+  @ViewChild('logo') logo!: ElementRef
 
   industries: Industry[] = []
   companyCountries = [
@@ -42,7 +44,8 @@ export class EditProfileComponent implements OnInit {
     private route: Router,
     private snakBar: MatSnackBar,
     private title: Title,
-    public loaderServ: LoaderService
+    public loaderServ: LoaderService,
+    private jobService:JobService
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +58,14 @@ export class EditProfileComponent implements OnInit {
       if (user) {
         this.authService.userID = user.uid
         this.userId = this.authService.userID
+        this.jobService.getJobs().subscribe((job: any) => {
+          this.jobService.jobs = job.map((ele: any) => {
+            return {
+              id: ele.payload.doc.id,
+              ...ele.payload.doc.data()
+            }
+          })
+        })
         this.companyService.getComapnyByID().subscribe((company: any) => {
           this.company = company
           this.loaderServ.isLoading = false
@@ -66,6 +77,7 @@ export class EditProfileComponent implements OnInit {
 
   
   updateDate(form: NgForm) {
+    let logo: File = (<HTMLInputElement>this.logo.nativeElement).files![0]
     // alert( this.userId)
     let formValue = form.value
     let newData: Company = {
@@ -74,10 +86,16 @@ export class EditProfileComponent implements OnInit {
       companyIndustry: formValue.companyIndustry,
       companyName: formValue.companyName,
       companySize: formValue.companySize,
-  
-      companyCountry: formValue.companyCountry
+      companyCountry: formValue.companyCountry,
+     
     }
-    this.companyService.updatCompany(newData, this.userId).then(() => {
+    this.companyService.updatCompany(newData,logo, this.userId).then(() => {
+      for(let i of this.jobService.jobs){
+        if(i.companyID==this.userId){
+          if(i.id!=null)
+          this.jobService.updatJob(i.id,{...i,...this.company})
+        }
+      }
       form.reset()
       this.snakBar.open("Updated Data successfuly", 'Delete', {
         duration: 2000,
