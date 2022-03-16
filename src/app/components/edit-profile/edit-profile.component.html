@@ -12,11 +12,12 @@
           <div class="col-5 mt-2">
             <label class="form-label fw-bold">Comapny Name</label>
             <input type="text" #companyName="ngModel" name="companyName" class="form-control fw-bolder"
-              [(ngModel)]="company.companyName">
+              [(ngModel)]="company.companyName" required>
+              <div class="text-danger fw-bold mt-1" role="alert" [hidden]="companyName.valid || companyName.untouched">
+                <span *ngIf="companyName.errors?.['required']">Company Name is required</span>
+              </div>
           </div>
-          <div class="text-danger fw-bold mt-1" role="alert" [hidden]="companyName.valid || companyName.untouched">
-            <span *ngIf="companyName.errors?.['required']">Company Name is required</span>
-          </div>
+          
           <div class="col-5 mt-2">
             <label class="form-label fw-bold">Comapny Country</label>
             <select id="disabledSelect" #companyCountry="ngModel" ngModel name="companyCountry"

@@ -16,7 +16,7 @@ import { JobsComponent } from '../../jobs/jobs.component';
 })
 
 export class TopNavComponent implements OnInit {
-  jobTitle!: any
+  searchInput!: any
   company: Company={} as Company
   
 
@@ -58,11 +58,17 @@ export class TopNavComponent implements OnInit {
   }
 
   search() {
-    if (this.jobTitle == "") {
+    if (this.searchInput == "") {
       this.ngOnInit()
     } else {
       this.jobService.jobs = this.jobService.jobs.filter(job => {
-        return job.jobTitle.toLocaleLowerCase().match(this.jobTitle.toLocaleLowerCase())
+        return job.jobTitle.toLocaleLowerCase().match(this.searchInput.toLocaleLowerCase())||
+        job.status.toLocaleLowerCase().match(this.searchInput.toLocaleLowerCase())||
+        job.jobCategories.toLocaleLowerCase().match(this.searchInput.toLocaleLowerCase())||
+        job.salary.toLocaleLowerCase().match(this.searchInput.toLocaleLowerCase())||
+        job.jobType.toLocaleLowerCase().match(this.searchInput.toLocaleLowerCase())
+        
+
       })
     }
   }

@@ -89,7 +89,7 @@ export class EditProfileComponent implements OnInit {
       companyCountry: formValue.companyCountry,
      
     }
-    this.companyService.updatCompany(newData,logo, this.userId).then(() => {
+    this.companyService.updatCompany(newData, this.userId,logo).then(() => {
       for(let i of this.jobService.jobs){
         if(i.companyID==this.userId){
           if(i.id!=null)
