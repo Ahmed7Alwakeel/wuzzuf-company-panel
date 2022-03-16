@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   user!: Observable<firebase.User | null>
   userID:string=""
+  
   constructor(private fireAuth: AngularFireAuth) {
     this.user = fireAuth.user
   }
@@ -23,4 +24,14 @@ export class AuthService {
   logOut() {
     return this.fireAuth.signOut()
   }
+  sendEmailMsg(email:string) {
+    return this.fireAuth.sendPasswordResetEmail(email)
+  }
+  resetPassword(code:string,newPassword:string){
+    return this.fireAuth.confirmPasswordReset(code,newPassword)
+  }
+  // update(user:firebase.User){
+  //   return this.fireAuth.
+  // }
+  
 }

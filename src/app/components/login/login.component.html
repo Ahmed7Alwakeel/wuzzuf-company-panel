@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="forgetMode==false">
   <div class="layout d-flex align-content-center justify-content-center flex-column">
     <section class="m-auto">
       <h1 class="text-light text-center mb-4 fw-bolder">WUZZUF</h1>
@@ -8,25 +8,64 @@
           <hr>
           <div class="row">
             <div class="col-12">
-              <form #form="ngForm" (ngSubmit)="logIn(form)">
+              <form #form="ngForm" class="mb-2" (ngSubmit)="logIn(form)">
+                <div [hidden]="error==''">
+                  <span class="text-danger fw-bold">{{error}}</span>
+                </div>
+               
+                <div class="mb-3 mt-1 fw-bold">
+                  <label for="exampleInputEmail1" class="form-label">Business Email</label>
+                  <input type="email" name="email" ngModel placeholder="Business Email" #email="ngModel" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" required pattern="^\w+@[org]+\.[a-zA-Z]+?\.[a-zA-Z]{2,3}$">
+                    <div  class="text-danger" [hidden]="email.valid || email.untouched">
+                      <span  *ngIf="email.errors?.['pattern']" class="fw-bold">Email not looks like a Business Email</span>
+                      <span  *ngIf="email.errors?.['required']" class="fw-bold">Email is required</span>
+                    </div>
+                </div>
+                <div class="mb-3 fw-bold">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input class="form-control mt-1" id="exampleInputPassword1" placeholder="Password" name="password"
+                    type="password" ngModel required #password="ngModel" >
+                    <div  class="text-danger" [hidden]="password.valid || password.untouched">
+                      <span  *ngIf="password.errors?.['required']" class="fw-bold">Password is required</span>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary w-100">Log In</button>
+              </form>
+              <a to="#" class="form__a" (click)="forgetMode=true">Forget Password</a>
+              <hr>
+              <div class="mb-3">
+                <h3 class="text-center d-inline ms-5 ">NEW TO WUZZUF ?</h3>
+                <a class="text-decoration-none ms-1 fs-6" routerLink="/sign-up">Join us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="row" *ngIf="forgetMode==true">
+  <div class="layout d-flex align-content-center justify-content-center flex-column">
+    <section class="m-auto">
+      <h1 class="text-light text-center mb-4 fw-bolder">WUZZUF</h1>
+      <div class="card" style="width: 25rem;">
+        <div class="card-body">
+          <h2 class="card-title text-center">Reset Password</h2>
+          <hr>
+          <div class="row">
+            <div class="col-12">
+              <form #form="ngForm" (ngSubmit)="resetPassword(form)">
                 <div [hidden]="error==''">
                   <span class="text-danger">{{error}}</span>
                 </div>
-                <div  class="text-danger" [hidden]="email.valid">
-                  <span  *ngIf="email.errors?.['pattern']">Email not looks like a Business Email</span>
-                </div>
                 <div class="mb-3 mt-1">
-                  <label for="exampleInputEmail1" class="form-label">Business Email</label>
+                  <label for="exampleInputEmail1" class="form-label fw-bold">Enter Your Email</label>
                   <input type="email" name="email" ngModel #email="ngModel" class="form-control" id="exampleInputEmail1"
                     aria-describedby="emailHelp"  >
                     <!-- pattern="^\w+@[org]+\.[a-zA-Z]+?\.[a-zA-Z]{2,3}$" -->
                 </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input class="form-control mt-2" id="exampleInputPassword1" placeholder="Password" name="password"
-                    type="password" ngModel required #password="ngModel" >
-                </div>
-                <button type="submit" [disabled]="form.invalid" class="btn btn-primary w-100">Log In</button>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary w-100">Reset Password</button>
               </form>
               <hr>
               <div class="mb-3">
