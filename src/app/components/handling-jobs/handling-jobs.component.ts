@@ -103,7 +103,11 @@ this.loaderService.isLoading=false;
       jobCategoriesAR:formValue.jobCategoriesAR,
       jobDescriptionAR:formValue.jobDescriptionAR,
       jobRequirementsAR:formValue.jobRequirementsAR,
-      educationLevelAR:formValue.educationLevelAR
+      educationLevelAR:formValue.educationLevelAR,
+      to:formValue.to,
+      from:formValue.from,
+      toAR:formValue.toAR,
+      fromAR:formValue.fromAR
   
     }
 
@@ -135,7 +139,21 @@ this.loaderService.isLoading=false;
       jobDescription: this.editingJob.jobDescription,
       jobRequirements: this.editingJob.jobRequirements,
       educationLevel: this.editingJob.educationLevel,
-      status: "PENDING"
+      status: "PENDING",
+      jobTitleAR:this.editingJob.jobTitleAR,
+      jobTypeAR:this.editingJob.jobTypeAR,
+      careerLevelAR:this.editingJob.careerLevelAR,
+      experienceAR:` ${form.value.toAR} الي ${form.value.fromAR} من`,
+      salaryAR:this.editingJob.salaryAR,
+      jobCategoriesAR:this.editingJob.jobCategoriesAR,
+      jobDescriptionAR:this.editingJob.jobDescriptionAR,
+      jobRequirementsAR:this.editingJob.jobRequirementsAR,
+      educationLevelAR:this.editingJob.educationLevelAR,
+      to:this.editingJob.to,
+      from:this.editingJob.from,
+      toAR:this.editingJob.toAR,
+      fromAR:this.editingJob.fromAR
+      
     }
 
     if (this.jobID != null)

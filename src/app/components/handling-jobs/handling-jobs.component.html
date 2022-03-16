@@ -14,8 +14,8 @@
         <div class="mb-3 col-5">
           <label for="disabledSelect" class="form-label fw-bolder">Job Type</label>
           <select id="disabledSelect" class="form-select fw-bolder " #jobType="ngModel" ngModel name="jobType" required>
-            <option class="fw-bolder">Full Time</option>
-            <option class="fw-bolder">Part Time</option>
+            <option class="fw-bolder" value="Full Time">Full Time</option>
+            <option class="fw-bolder" value="Part Time">Part Time</option>
           </select>
           <div class="text-danger fw-bold mt-2 alert alert-danger" [hidden]="jobType.valid || jobType.untouched">
             <span *ngIf="jobType.errors?.['required']"> Job Type is required</span>
@@ -24,9 +24,9 @@
         <div class="mb-3 col-5">
           <label for="disabledSelect" class="form-label fw-bolder">Career Level</label>
           <select id="disabledSelect" class="form-select " #careerLevel="ngModel" ngModel name="careerLevel" required>
-            <option class="fw-bolder">Student</option>
-            <option class="fw-bolder">Entery Level</option>
-            <option class="fw-bolder">Experienced</option>
+            <option class="fw-bolder" value="Student">Student</option>
+            <option class="fw-bolder" value="Entery Level">Entery Level</option>
+            <option class="fw-bolder" value="Experienced">Experienced</option>
           </select>
           <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
             [hidden]="careerLevel.valid || careerLevel.untouched">
@@ -37,8 +37,8 @@
           <label for="disabledSelect" class="form-label fw-bolder">Education Level</label>
           <select id="disabledSelect" class="form-select" #educationLevel="ngModel" ngModel name="educationLevel"
             required>
-            <option class="fw-bolder">Bachelor's Degree</option>
-            <option class="fw-bolder">Master Degree</option>
+            <option class="fw-bolder" value="Bachelor Degree">Bachelor Degree</option>
+            <option class="fw-bolder" value="Master Degree">Master Degree</option>
           </select>
           <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
             [hidden]="educationLevel.valid || educationLevel.untouched">
@@ -52,12 +52,12 @@
               <span class="me-2 fw-bolder">From</span>
               <select id="disabledSelect" class="form-select w-50 d-inline" #from="ngModel" ngModel name="from"
                 required>
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
               </select>
               <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
                 [hidden]="from.valid || from.untouched">
@@ -94,9 +94,9 @@
           <label for="disabledSelect" class="form-label fw-bolder">Job Categories</label>
           <select id="disabledSelect" class="form-select fw-bolder" #jobCategories="ngModel" ngModel
             name="jobCategories" required>
-            <option class="fw-bolder">IT/Software Development</option>
-            <option class="fw-bolder">Engineering - Telecom/Technology</option>
-            <option class="fw-bolder">Creative/Design/Art</option>
+            <option class="fw-bolder" value="IT/Software Development">IT/Software Development</option>
+            <option class="fw-bolder" value="Engineering - Telecom/Technology">Engineering - Telecom/Technology</option>
+            <option class="fw-bolder" value="Creative/Design/Art">Creative/Design/Art</option>
           </select>
           <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
             [hidden]="jobCategories.valid || jobCategories.untouched">
@@ -137,8 +137,9 @@
             <label for="disabledSelect" class="form-label fw-bolder">نوع الوظيفة</label>
             <select id="disabledSelect" class="form-select fw-bolder " #jobTypeAR="ngModel" ngModel name="jobTypeAR"
               required>
-              <option class="fw-bolder">دوام كامل</option>
-              <option class="fw-bolder">دوام جزئي</option>
+           
+              <option class="fw-bolder"  [disabled]="jobType.value!=='Full Time'">دوام كامل</option>
+              <option class="fw-bolder" [disabled]="jobType.value!=='Part Time'">دوام جزئي</option>
             </select>
             <div class="text-danger fw-bold mt-2 alert alert-danger" [hidden]="jobTypeAR.valid || jobTypeAR.untouched">
               <span *ngIf="jobTypeAR.errors?.['required']"> نوع الوظيفة مطلوب</span>
@@ -147,9 +148,10 @@
           <div class="mb-3 col-5">
             <label for="disabledSelect" class="form-label fw-bolder">المستوى الوظيفي </label>
             <select id="disabledSelect" class="form-select fw-bolder " #careerLevelAR="ngModel" ngModel name="careerLevelAR" required>
-              <option class="fw-bolder">طالب</option>
-              <option class="fw-bolder">مبتدأ</option>
-              <option class="fw-bolder">خبرة</option>
+              <option class="fw-bolder" [disabled]="careerLevel.value!='Student'">طالب</option>
+              <option class="fw-bolder" [disabled]="careerLevel.value!='Entery Level'">مبتدأ</option>
+              <option class="fw-bolder" [disabled]="careerLevel.value!='Experienced'">خبرة</option>
+              
             </select>
             <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
               [hidden]="careerLevelAR.valid || careerLevelAR.untouched">
@@ -160,8 +162,9 @@
             <label for="disabledSelect" class="form-label fw-bolder">المستوي التعليمي</label>
             <select id="disabledSelect" class="form-select fw-bolder" #educationLevelAR="ngModel" ngModel name="educationLevelAR"
               required>
-              <option class="fw-bolder">درجة البكالوريوس</option>
-              <option class="fw-bolder">درجة الماجيستير</option>
+              <option class="fw-bolder" [disabled]="educationLevel.value!='Bachelor Degree'">درجة البكالوريوس</option>
+              <option class="fw-bolder"[disabled]="educationLevel.value!='Master Degree'">درجة الماجيستير</option>
+            
             </select>
             <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
               [hidden]="educationLevelAR.valid || educationLevelAR.untouched">
@@ -175,12 +178,12 @@
                 <span class="ms-2 fw-bolder">من</span>
                 <select id="disabledSelect" class="form-select w-50 d-inline" #fromAR="ngModel" ngModel name="fromAR"
                   required>
-                  <option value="0">٠</option>
-                  <option value="1">١</option>
-                  <option value="2">٢</option>
-                  <option value="3">٣</option>
-                  <option value="4">٤</option>
-                  <option value="5">٥</option>
+                  <option value="٠" [disabled]="from.value!=0">٠</option>
+                  <option value="١" [disabled]="from.value!=1">١</option>
+                  <option value="٢" [disabled]="from.value!=2">٢</option>
+                  <option value="٣" [disabled]="from.value!=3">٣</option>
+                  <option value="٤" [disabled]="from.value!=4">٤</option>
+                  <option value="٥" [disabled]="from.value!=5">٥</option>
                 </select>
                 <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
                   [hidden]="fromAR.valid || fromAR.untouched">
@@ -190,12 +193,12 @@
               <div class="col-3">
                 <span class="ms-2 fw-bolder">الي</span>
                 <select id="disabledSelect"  class="form-select w-50 d-inline" #toAR="ngModel" ngModel name="toAR" required>
-                  <option value="0" [disabled]="fromAR.value>=0">٠</option>
-                  <option value="1" [disabled]="fromAR.value>=1">١</option>
-                  <option value="2" [disabled]="fromAR.value>=2">٢</option>
-                  <option value="3" [disabled]="fromAR.value>=3">٣</option>
-                  <option value="4" [disabled]="fromAR.value>=4">٤</option>
-                  <option value="5" [disabled]="fromAR.value>=5">٥</option>
+                  <option value="٠" [disabled]="to.value!=0">٠</option>
+                  <option value="١" [disabled]="to.value!=1">١</option>
+                  <option value="٢" [disabled]="to.value!=2">٢</option>
+                  <option value="٣" [disabled]="to.value!=3">٣</option>
+                  <option value="٤" [disabled]="to.value!=4">٤</option>
+                  <option value="٥" [disabled]="to.value!=5">٥</option>
                 </select>
                 <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
                   [hidden]="toAR.valid || toAR.untouched">
@@ -217,9 +220,10 @@
             <label for="disabledSelect" class="form-label fw-bolder">فئات الوظائف</label>
             <select id="disabledSelect" class="form-select fw-bolder" #jobCategoriesAR="ngModel" ngModel
               name="jobCategoriesAR" required>
-              <option class="fw-bolder">البرمجة و التطوير</option>
-              <option class="fw-bolder">الهندسة و الاتصالات</option>
-              <option class="fw-bolder">الابداع و الفن</option>
+              <option class="fw-bolder" [disabled]="jobCategories.value!='IT/Software Development'">البرمجة و التطوير</option>
+              <option class="fw-bolder" [disabled]="jobCategories.value!='Engineering - Telecom/Technology'">الهندسة و الاتصالات</option>
+              <option class="fw-bolder" [disabled]="jobCategories.value!='Creative/Design/Art'">الابداع و الفن</option>
+             
             </select>
             <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
               [hidden]="jobCategoriesAR.valid || jobCategoriesAR.untouched">
@@ -254,6 +258,21 @@
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="row" *ngIf="editMode">
   <h1 class="fw-bolder text-primary">Job Data</h1>
   <div class="card m-auto shadow border-0 mb-5">
@@ -273,8 +292,8 @@
           <label for="disabledSelect" class="form-label fw-bolder">Job Type</label>
           <select id="disabledSelect" class="form-select fw-bolder" #jobType="ngModel" [(ngModel)]="editingJob.jobType"
             name="jobType" required>
-            <option class="fw-bolder">Full Time</option>
-            <option class="fw-bolder">Part Time</option>
+            <option class="fw-bolder" value="Full Time">Full Time</option>
+            <option class="fw-bolder" value="Part Time">Part Time</option>
           </select>
           <div class="text-danger fw-bold mt-1 alert alert-danger" [hidden]="jobType.valid || jobType.untouched">
             <span *ngIf="jobType.errors?.['required']"> Job Type is required</span>
@@ -284,9 +303,9 @@
           <label for="disabledSelect" class="form-label fw-bolder">Career Level</label>
           <select id="disabledSelect" class="form-select fw-bolder" #careerLevel="ngModel"
             [(ngModel)]="editingJob.careerLevel" name="careerLevel" required>
-            <option class="fw-bolder">Student</option>
-            <option class="fw-bolder">Entery Level</option>
-            <option class="fw-bolder">Experienced</option>
+            <option class="fw-bolder" value="Student">Student</option>
+            <option class="fw-bolder" value="Entery Level">Entery Level</option>
+            <option class="fw-bolder" value="Experienced">Experienced</option>
           </select>
           <div class="text-danger fw-bold mt-1 alert alert-danger" role="alert"
             [hidden]="careerLevel.valid || careerLevel.untouched">
@@ -297,8 +316,8 @@
           <label for="disabledSelect" class="form-label fw-bolder">Education Level</label>
           <select id="disabledSelect" class="form-select fw-bolder" #educationLevel="ngModel"
             [(ngModel)]="editingJob.educationLevel" name="educationLevel" required>
-            <option class="fw-bolder">Bachelor's Degree</option>
-            <option class="fw-bolder">Master Degree</option>
+            <option class="fw-bolder" value="Bachelor Degree">Bachelor Degree</option>
+            <option class="fw-bolder" value="Master Degree">Master Degree</option>
 
           </select>
           <div class="text-danger fw-bold mt-1 alert alert-danger w-75" role="alert"
@@ -311,14 +330,15 @@
           <div class="row">
             <div class="col-3">
               <span class="me-2 fw-bolder">From</span>
-              <select id="disabledSelect" class="form-select w-50 d-inline" #from="ngModel" ngModel name="from"
+              <select id="disabledSelect" class="form-select w-50 d-inline fw-bold" #from="ngModel" [(ngModel)]="editingJob.from" name="from"
                 required>
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                
               </select>
               <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
                 [hidden]="from.valid || from.untouched">
@@ -327,7 +347,7 @@
             </div>
             <div class="col-3">
               <span class="me-2 fw-bolder">To</span>
-              <select id="disabledSelect" class="form-select w-50 d-inline" #to="ngModel" ngModel name="to" required>
+              <select id="disabledSelect" class="form-select w-50 d-inline fw-bold" #to="ngModel" [(ngModel)]="editingJob.to" name="to" required>
                 <option value="0" [disabled]="from.value>=0">0</option>
                 <option value="1" [disabled]="from.value>=1">1</option>
                 <option value="2" [disabled]="from.value>=2">2</option>
@@ -355,9 +375,9 @@
           <label for="disabledSelect" class="form-label fw-bolder">Job Categories</label>
           <select id="disabledSelect" class="form-select fw-bolder" #jobCategories="ngModel"
             [(ngModel)]="editingJob.jobCategories" name="jobCategories" required>
-            <option class="fw-bolder">IT/Software Development</option>
-            <option class="fw-bolder">Engineering - Telecom/Technology</option>
-            <option class="fw-bolder">Creative/Design/Art</option>
+            <option class="fw-bolder" value="IT/Software Development">IT/Software Development</option>
+            <option class="fw-bolder" value="Engineering - Telecom/Technology">Engineering - Telecom/Technology</option>
+            <option class="fw-bolder" value="Creative/Design/Art">Creative/Design/Art</option>
           </select>
           <div class="text-danger fw-bold mt-1 alert alert-danger" role="alert"
             [hidden]="jobCategories.valid || jobCategories.untouched">
@@ -399,8 +419,8 @@
             <label for="disabledSelect" class="form-label fw-bolder">نوع الوظيفة</label>
             <select id="disabledSelect" class="form-select fw-bolder " #jobTypeAR="ngModel" [(ngModel)]="editingJob.jobTypeAR" name="jobTypeAR"
               required>
-              <option class="fw-bolder">دوام كامل</option>
-              <option class="fw-bolder">دوام جزئي</option>
+              <option class="fw-bolder"  [disabled]="jobType.value!=='Full Time'">دوام كامل</option>
+              <option class="fw-bolder" [disabled]="jobType.value!=='Part Time'">دوام جزئي</option>
             </select>
             <div class="text-danger fw-bold mt-2 alert alert-danger" [hidden]="jobTypeAR.valid || jobTypeAR.untouched">
               <span *ngIf="jobTypeAR.errors?.['required']"> نوع الوظيفة مطلوب</span>
@@ -409,9 +429,9 @@
           <div class="mb-3 col-5">
             <label for="disabledSelect" class="form-label fw-bolder">المستوى الوظيفي </label>
             <select id="disabledSelect" class="form-select fw-bolder " #careerLevelAR="ngModel" [(ngModel)]="editingJob.careerLevelAR" name="careerLevelAR" required>
-              <option class="fw-bolder">طالب</option>
-              <option class="fw-bolder">مبتدأ</option>
-              <option class="fw-bolder">خبرة</option>
+              <option class="fw-bolder" [disabled]="careerLevel.value!='Student'">طالب</option>
+              <option class="fw-bolder" [disabled]="careerLevel.value!='Entery Level'">مبتدأ</option>
+              <option class="fw-bolder" [disabled]="careerLevel.value!='Experienced'">خبرة</option>
             </select>
             <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
               [hidden]="careerLevelAR.valid || careerLevelAR.untouched">
@@ -422,8 +442,8 @@
             <label for="disabledSelect" class="form-label fw-bolder">المستوي التعليمي</label>
             <select id="disabledSelect" class="form-select fw-bolder" #educationLevelAR="ngModel" [(ngModel)]="editingJob.educationLevelAR" name="educationLevelAR"
               required>
-              <option class="fw-bolder">درجة البكالوريوس</option>
-              <option class="fw-bolder">درجة الماجيستير</option>
+              <option class="fw-bolder" [disabled]="educationLevel.value!='Bachelor Degree'">درجة البكالوريوس</option>
+              <option class="fw-bolder"[disabled]="educationLevel.value!='Master Degree'">درجة الماجيستير</option>
             </select>
             <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
               [hidden]="educationLevelAR.valid || educationLevelAR.untouched">
@@ -435,14 +455,14 @@
             <div class="row">
               <div class="col-3">
                 <span class="ms-2 fw-bolder">من</span>
-                <select id="disabledSelect" class="form-select w-50 d-inline" #fromAR="ngModel" ngModel name="fromAR"
+                <select id="disabledSelect" class="form-select w-50 d-inline" #fromAR="ngModel" [(ngModel)]="editingJob.fromAR" name="fromAR"
                   required>
-                  <option value="0">٠</option>
-                  <option value="1">١</option>
-                  <option value="2">٢</option>
-                  <option value="3">٣</option>
-                  <option value="4">٤</option>
-                  <option value="5">٥</option>
+                  <option value="٠" [disabled]="from.value!=0">٠</option>
+                  <option value="١" [disabled]="from.value!=1">١</option>
+                  <option value="٢" [disabled]="from.value!=2">٢</option>
+                  <option value="٣" [disabled]="from.value!=3">٣</option>
+                  <option value="٤" [disabled]="from.value!=4">٤</option>
+                  <option value="٥" [disabled]="from.value!=5">٥</option>
                  
                 </select>
                 <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
@@ -452,13 +472,13 @@
               </div>
               <div class="col-3">
                 <span class="ms-2 fw-bolder">الي</span>
-                <select id="disabledSelect"  class="form-select w-50 d-inline" #toAR="ngModel" ngModel name="toAR" required>
-                  <option value="0" [disabled]="fromAR.value>=0">٠</option>
-                  <option value="1" [disabled]="fromAR.value>=1">١</option>
-                  <option value="2" [disabled]="fromAR.value>=2">٢</option>
-                  <option value="3" [disabled]="fromAR.value>=3">٣</option>
-                  <option value="4" [disabled]="fromAR.value>=4">٤</option>
-                  <option value="5" [disabled]="fromAR.value>=5">٥</option>
+                <select id="disabledSelect"  class="form-select w-50 d-inline" #toAR="ngModel" [(ngModel)]="editingJob.toAR" name="toAR" required>
+                  <option value="٠" [disabled]="fromAR.value>=0">٠</option>
+                  <option value="١" [disabled]="fromAR.value>=1">١</option>
+                  <option value="٢" [disabled]="fromAR.value>=2">٢</option>
+                  <option value="٣" [disabled]="fromAR.value>=3">٣</option>
+                  <option value="٤" [disabled]="fromAR.value>=4">٤</option>
+                  <option value="٥" [disabled]="fromAR.value>=5">٥</option>
                 </select>
                 <div class="text-danger fw-bold mt-1 alert alert-danger " role="alert"
                   [hidden]="toAR.valid || toAR.untouched">
@@ -480,9 +500,10 @@
             <label for="disabledSelect" class="form-label fw-bolder">فئات الوظائف</label>
             <select id="disabledSelect" class="form-select fw-bolder" #jobCategoriesAR="ngModel" [(ngModel)]="editingJob.jobCategoriesAR"
               name="jobCategoriesAR" required>
-              <option class="fw-bolder">البرمجة و التطوير</option>
-              <option class="fw-bolder">الهندسة و الاتصالات</option>
-              <option class="fw-bolder">الابداع و الفن</option>
+             
+              <option class="fw-bolder" [disabled]="jobCategories.value!='IT/Software Development'">البرمجة و التطوير</option>
+              <option class="fw-bolder" [disabled]="jobCategories.value!='Engineering - Telecom/Technology'">الهندسة و الاتصالات</option>
+              <option class="fw-bolder" [disabled]="jobCategories.value!='Creative/Design/Art'">الابداع و الفن</option>
             </select>
             <div class="text-danger fw-bold mt-3 alert alert-danger" role="alert"
               [hidden]="jobCategoriesAR.valid || jobCategoriesAR.untouched">

@@ -70,6 +70,7 @@ export class TopNavComponent implements OnInit {
         
 
       })
+      
     }
   }
 
