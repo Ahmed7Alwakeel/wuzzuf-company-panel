@@ -2,11 +2,12 @@
     <h1 class="text-primary fw-bold p-3">Applications</h1>
     <h1 class="alert-primary p-3 mt-3" *ngIf="joApplications.length==0">There's No Applications</h1>
     <div class="application-wrapper">
-        
+
         <div class="row">
             <div class="col-sm-12 col-md-4 col-lg-3 mt-3 application"
                 *ngFor="let application of joApplications ; index as i "
-                routerLink="/application-details/{{application.userId}}">
+                routerLink="/application-details/{{application.userId}}"
+                [queryParams]="{ appId: application.applicationId}" queryParamsHandling="merge">
                 <details-card title="{{users[i]?.firstName + ' ' + users[i]?.lastName |titlecase}}"
                     subtitle="{{users[i]?.title}}" matTooltip="View Details" tooltipPosition="left">
                     <span class="text-primary">View Application Deatils</span>

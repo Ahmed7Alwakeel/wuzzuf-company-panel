@@ -42,8 +42,14 @@ export class JobApplicantsComponent implements OnInit {
               this.loaderServ.isLoading = false
               this.joApplications = applications
               this.getUserDetails()
+              console.log(applications);  
+    
             })
         });
+
+
+
+
       }
       else {
         this.authService.userID = ""

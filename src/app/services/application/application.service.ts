@@ -25,6 +25,22 @@ export class ApplicationService {
       )
   }
 
-  
+  getApplicationDetails(applicationId: string) {
+    return this.fireStore.doc(`jobApplication/${applicationId}`)
+      .snapshotChanges()
+      .pipe(
+        map((action: any) => {
+          // console.log(action.payload);
+          if (action.payload.exists === false) {
+            return new Object as Application;
+          } else {
+            const data = action.payload.data() as Application;
+            data.userId = action.payload.id;
+            return data;
+          }
+        })
+      );
+  }
+
 
 }
