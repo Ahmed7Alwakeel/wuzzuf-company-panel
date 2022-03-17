@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, DoCheck, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';;
 import { CompanySize } from 'src/app/interfaces/company-size';
 import { Industry } from 'src/app/interfaces/industry';
@@ -50,6 +50,8 @@ export class SignUpComponent implements OnInit {
     , private _companyServ: CompanyService
     , private router: Router,
     private _snackBar: MatSnackBar) { }
+  
+  
 
 
   ngOnInit() {

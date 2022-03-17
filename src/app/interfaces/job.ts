@@ -11,6 +11,8 @@ export interface Job {
     id?:string,
     status:string,
     companyID?:string,
+    to?:string,
+    from?:string,
     educationLevel:string,
     jobTitleAR?:string,
     jobTypeAR?:string,
@@ -21,5 +23,7 @@ export interface Job {
     jobDescriptionAR?:string,
     jobRequirementsAR?:string,
     educationLevelAR?:string,
+    toAR?:string,
+    fromAR?:string,
 
 }

@@ -6,6 +6,10 @@
                     {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
                 </button>
                 <h1 class="text-primary text-center mb-4 fw-bolder">WUZZUF- SignUp</h1>
+                <div class="mb-3">
+                    <h3 class="text-center d-inline ms-5 fw-bold ">Already On WUZZUF ?</h3>
+                    <a class="text-decoration-none ms-1 fs-6 fw-bold " routerLink="/login">Sign in</a>
+                  </div>
                 <mat-stepper [linear]="isLinear" #stepper>
                     <mat-step [stepControl]="firstFormGroup">
                         <form [formGroup]="firstFormGroup">
@@ -86,7 +90,6 @@
 
                             <div>
                                 <button mat-raised-button color="primary" matStepperNext>Next</button>
-                                <button class="btn btn-primary ms-1" routerLink="/login">Log In</button>
                             </div>
 
                         </form>

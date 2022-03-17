@@ -3,8 +3,10 @@ import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Company } from 'src/app/interfaces/company';
 import { Job } from 'src/app/interfaces/job';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CompanyService } from 'src/app/services/company/company.service';
 import { JobService } from 'src/app/services/jobs/job.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 
@@ -16,6 +18,7 @@ import { LoaderService } from 'src/app/services/loader/loader.service';
 export class HandlingJobsComponent implements OnInit {
   editMode = false;
   isUser = false;
+  company!:Company
   jobID!: string | null
   editingJob: Job = {} as Job
 
@@ -37,7 +40,8 @@ export class HandlingJobsComponent implements OnInit {
     private snakBar: MatSnackBar,
     private router: Router,
     private title: Title,
-    private loaderService:LoaderService) { }
+    private loaderService:LoaderService,
+    private companyService:CompanyService) { }
 
   ngOnInit(): void {
 
@@ -49,6 +53,9 @@ this.loaderService.isLoading=false;
         console.log(user.uid)
         this.isUser = true;
         this.authService.userID = user.uid
+        this.companyService.getComapnyByID().subscribe((company:any)=>{
+          this.company=company
+        })
         this.activatedRoute.paramMap.subscribe((paramMap) => {
           this.jobID = paramMap.get('id');
           this.editMode = paramMap.get('id') != null;
@@ -96,11 +103,15 @@ this.loaderService.isLoading=false;
       jobCategoriesAR:formValue.jobCategoriesAR,
       jobDescriptionAR:formValue.jobDescriptionAR,
       jobRequirementsAR:formValue.jobRequirementsAR,
-      educationLevelAR:formValue.educationLevelAR
+      educationLevelAR:formValue.educationLevelAR,
+      to:formValue.to,
+      from:formValue.from,
+      toAR:formValue.toAR,
+      fromAR:formValue.fromAR
   
     }
 
-    this.jobService.addJob(data).then(() => {
+    this.jobService.addJob({...data,...this.company}).then(() => {
       form.reset()
       this.snakBar.open("Added Job successfuly", 'Delete', {
         duration: 2000,
@@ -128,11 +139,25 @@ this.loaderService.isLoading=false;
       jobDescription: this.editingJob.jobDescription,
       jobRequirements: this.editingJob.jobRequirements,
       educationLevel: this.editingJob.educationLevel,
-      status: "PENDING"
+      status: "PENDING",
+      jobTitleAR:this.editingJob.jobTitleAR,
+      jobTypeAR:this.editingJob.jobTypeAR,
+      careerLevelAR:this.editingJob.careerLevelAR,
+      experienceAR:` ${form.value.toAR} الي ${form.value.fromAR} من`,
+      salaryAR:this.editingJob.salaryAR,
+      jobCategoriesAR:this.editingJob.jobCategoriesAR,
+      jobDescriptionAR:this.editingJob.jobDescriptionAR,
+      jobRequirementsAR:this.editingJob.jobRequirementsAR,
+      educationLevelAR:this.editingJob.educationLevelAR,
+      to:this.editingJob.to,
+      from:this.editingJob.from,
+      toAR:this.editingJob.toAR,
+      fromAR:this.editingJob.fromAR
+      
     }
 
     if (this.jobID != null)
-      this.jobService.updatJob(this.jobID, newJob).then(() => {
+      this.jobService.updatJob(this.jobID, {...newJob,...this.company}).then(() => {
         form.reset()
         this.snakBar.open("Editing Job successfuly", 'Delete', {
           duration: 2000,
